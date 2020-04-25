@@ -1,0 +1,112 @@
+<link href="../static/css/index.css" rel="stylesheet" type="text/css">
+{% extends "base.html" %}
+
+{% block content %}
+<div id="cool">
+<br>
+    <br>
+    <img class="mx-auto d-block" src="../static/logo7.png" width="400" height="120">
+<h3 class="text-center">~A place where people connect through meaningful actions~</h3>
+    <br>
+    <br>
+    <br>
+    <br>
+<br>
+<br>
+
+
+
+
+
+</div>
+
+<br>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<div class="dropdown">
+  <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Filter type of problems
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Education</a>
+    <a class="dropdown-item" href="#">Health</a>
+    <a class="dropdown-item" href="#">Environment</a>
+    <a class="dropdown-item" href="#">Economics</a>
+    <a class="dropdown-item" href="#">Society</a>
+  </div>
+</div>
+
+      <p class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </p>
+
+    <form class="form-inline my-2 my-lg-0 text-right">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search problem" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+       <p class="nav-item" >
+        <a class="nav-link disabled" href="#">Country:<img class=" rounded mx-auto d-block" src="../static/vietnam_flag.png"  alt="" height="25"></a>
+       </p>
+
+       <button href="#" type="button" class="btn btn-outline-dark">Change country</button>
+
+</nav>
+
+<p></p>
+
+<div class="container row row-cols-1 row-cols-md-2 text-center">
+{% for post in many_posts.items%}
+
+    <div class="card border-dark mb-3 " style="width: 20rem;">
+     <div class="card-body ">
+         <h7><a class="text-warning" href="{{ url_for('users.user_posts', username=post.creator.first_name+post.creator.middle_name+post.creator.last_name) }}"><img class="text-center rounded" src="{{ url_for('static', filename='profile_pics/'+ post.creator.profile_image) }}" width = "35" height = "35" alt=""> {{ post.creator.first_name}} {{ post.creator.middle_name }} {{ post.creator.last_name }}</a></h7>
+         <p></p>
+{#         <img class="text-center rounded" src="{{ url_for('static', filename='blog_pics/'+ post.blog_image) }}" width = "495" height = "250" alt="">#}
+         {# Need caution for post.blog_image on the code above #}
+         <p></p>
+         <h2><a class="card-tittle text-body problem" href="{{ url_for('blog_posts.blog_view', blog_validated_id=post.blog_id) }}">{{ post.problem_name[0:40]}}..</a></h2>
+         <p class="card-text">{{ post.text[0:100] }}...</p>
+         <p><small class="text-muted">Posted on: {{ post.date.strftime('%Y-%m-%d') }}</small></p>
+         <a class="btn btn-warning" href="{{ url_for('blog_posts.blog_view', blog_validated_id=post.blog_id) }}">Read more</a>
+     </div>
+
+
+    </div>
+
+{% endfor %}
+
+{#{% for post_next in many_posts.items %}#}
+{#    <div class="card border-dark mb-3 " style="width: 25rem;">#}
+{#     <div class="card-body ">#}
+{#         <h2><a class="card-tittle text-body" href="{{ url_for('blog_posts.blog_view', blog_validated_id=post_next.blog_next) }}">{{ post_next.problem_name}}</a></h2>#}
+{#         <h7>Posted By: <a class="text-warning" href="{{ url_for('users.user_posts', username=post_next.creator.first_name+post_next.creator.middle_name+post_next.creator.last_name) }}">{{ post_next.creator.first_name}} {{ post_next.creator.middle_name }} {{ post_next.creator.last_name }}</a></h7> {# Change href="{{ url_for('users.user_posts', username=post.creator.username) }}" to .........username=post.creator.first_name+post.creator.middle_name+post.creator.last_name#}
+{#         <p>Posted on: {{ post.date.strftime('%Y-%m-%d') }}</p>#}
+{#         <a class="btn btn-warning" href="{{ url_for('blog_posts.blog_view', blog_validated_id=post_next.blog_next) }}">Read more</a>#}
+{#     </div>#}
+{##}
+{##}
+{#    </div>#}
+{#{% endfor %}#}
+
+
+</div>
+
+
+<nav aria-label="Page navigation example">
+         <ul class="pagination justify-content-center">
+            {% for page_num in many_posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                {% if many_posts.page==page_num %}
+                    <li class='page-item disabled'>
+                    <a class="page-link" href="{{ url_for('core.index', page=page_num)}}">{{ page_num }}</a>
+                    </li>
+                {% else %}
+                    <li class='page-item'>
+                    <a class="page-link" href="{{ url_for('core.index', page=page_num)}}">{{ page_num }}</a>
+                    </li>
+                {% endif %}
+             {% endfor %}
+          </ul>
+     </nav>
+
+{% endblock %}
+

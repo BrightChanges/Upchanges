@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h7><a class="text-warning" href="{{ url_for('users.user_posts', username=post.creator.first_name+post.creator.middle_name+post.creator.last_name) }}"><img class="text-center rounded" src="{{ url_for('static', filename='profile_pics/'+ post.creator.profile_image) }}" width = "40" height = "40" alt=""> {{ post.creator.first_name}} {{ post.creator.middle_name }} {{ post.creator.last_name }}</a></h7>
+    <h1>{{ post.problem_name }}</h1>
+    <p><small class="text-muted">Posted on: {{ post.date.strftime('%B, %d, %Y') }}</small></p>
+    <p>{{ post.text }}</p>
+
+
+{% if post.creator == current_user %}
+<div>
+<a href="{{ url_for('blog_posts.update',blog_validated_id=post.blog_id) }}">Update</a>
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#del_modal" >Delete</button>
+</div>
+{% endif %}
+</div>
+
+
+
+<div class="modal" tabindex="-1" role="dialog" id="del_modal">  {# you can set up id even in html to connect code together #}
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Post?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete the post?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="{{ url_for('blog_posts.delete_post', blog_validated_id=post.blog_id ) }}">
+            <input type="submit" class="btn btn-danger" value="Delete">
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron">
+     <div class="text-center">
+         <h1>{{ current_user.first_name}} {{ current_user.middle_name }} {{ current_user.last_name }}'s setting</h1>
+         <img class="text-center img-thumbnail" src="{{ url_for('static', filename='profile_pics/'+current_user.profile_image) }}" width = "200" height = "200" alt="">
+         <p>Email: {{ current_user.email }}</p>
+     </div>
+</div>
+
+<div class="container">
+<form method="POST" action="" enctype="multipart/form-data"> {# putting action in html form is recommended. And enctype allowed form to collect image file, different tyes of file #}
+    {{ form3.hidden_tag() }}
+    {{ form3.first_name.label }} {{ form3.first_name(class="form-group form-control") }} <br>
+    {{ form3.middle_name.label }} {{ form3.middle_name(class="form-group form-control") }}
+    {{ form3.last_name.label }} {{ form3.last_name(class="form-group form-control") }}<br>
+    {{ form3.email.label }} {{ form3.email(class="form-group form-control") }}<br>
+    {{ form3.picture.label }} {{ form3.picture(class="form-group form-control") }} <br>
+    {{ form3.update_submit(class="btn btn-warning") }}
+</form>
+</div>
+{% endblock %}
+
+
+
+
+

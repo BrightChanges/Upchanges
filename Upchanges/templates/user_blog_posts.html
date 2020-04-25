@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+ <div class="container">
+    <div class="jumbotron">
+        <div class="text-center">
+            <h1>{{ home_user.first_name}} {{ home_user.middle_name}} {{ home_user.last_name }}'s page</h1>
+            <img class="text-center img-thumbnail" src="{{ url_for('static', filename='profile_pics/'+ home_user.profile_image) }}" width = "200" height = "200" alt=""">
+            <p>Email: {{ current_user.email }}</p>
+        </div>
+
+    </div>
+
+ <div class="container row row-cols-1 row-cols-md-2 text-center">
+         {% for posts in blog_posts.items %}
+          <div class="card border-dark mb-3 ">
+          <div class="card-body ">
+              <h7><a class="text-warning" href="{{ url_for('users.user_posts', username=home_user.first_name+home_user.middle_name+home_user.last_name) }}"><img class="text-center rounded" src="{{ url_for('static', filename='profile_pics/'+ home_user.profile_image) }}" width = "35" height = "35" alt=""> {{ home_user.first_name}} {{ home_user.middle_name}} {{ home_user.last_name }} </a></h7>
+              <p></p>
+                 <h2><a class="card-tittle text-body" href="{{ url_for('blog_posts.blog_view',blog_validated_id=posts.blog_id )}}">{{ posts.problem_name }}</a></h2>
+              <p><small class="text-muted">Posted on: {{ posts.date.strftime("%Y-%m-%d") }}</small></p>
+                 <br>
+                 <p>{{ posts.text }}</p>
+                 <br>
+          </div>
+         </div>
+         {% endfor %}
+ </div>
+
+     <nav aria-label="Page navigation example">
+         <ul class="pagination justify-content-center">
+            {% for page_num in blog_posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2 ) %}
+                {% if blog_posts.page==page_num %}
+                    <li class='page-item disabled'>
+                    <a class="page-link" href="{{ url_for('users.user_posts', username=home_user.first_name+home_user.middle_name+home_user.last_name, page=page_num)}}">{{ page_num }}</a>
+                    </li>
+                {% else %}
+                    <li class='page-item'>
+                    <a class="page-link" href="{{ url_for('users.user_posts', username=home_user.first_name+home_user.middle_name+home_user.last_name, page=page_num)}}">{{ page_num }}</a>
+                    </li>
+                {% endif %}
+             {% endfor %}
+          </ul>
+     </nav>
+
+{% endblock %}
