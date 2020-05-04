@@ -17,6 +17,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 
+@app.after_request
+def add_header(response):
+    # response.cache_control.no_store = True
+    if 'Cache-Control' not in response.headers:
+        response.headers['Cache-Control'] = 'no-store'
+    return response
+
 db = SQLAlchemy(app)
 Migrate(app, db)
 

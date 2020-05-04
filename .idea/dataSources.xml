@@ -4,6 +4,7 @@
     <data-source source="LOCAL" name="data" uuid="683d92fa-ad9a-4d4d-8654-db05c898dfb4">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
+      <remarks>Data for users, pics, passwords,blogs infos</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/Upchanges/data.sqlite</jdbc-url>
     </data-source>

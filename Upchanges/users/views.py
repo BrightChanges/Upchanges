@@ -70,6 +70,7 @@ def account():
         current_user.first_name = form3.first_name.data
         current_user.middle_name = form3.middle_name.data
         current_user.last_name = form3.last_name.data
+        current_user.email = form3.email.data
         db.session.commit()
         flash('User Account Updated!')
         return redirect(url_for('users.account'))

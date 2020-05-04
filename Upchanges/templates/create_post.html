@@ -2,12 +2,13 @@
 
 {% block content %}
 <div class="jumbotron">
-<form method="POST" >
+<form method="POST" action="" enctype="multipart/form-data" >
     {{ form.hidden_tag() }}
+    {{ form.blog_image.label }} {{ form.blog_image(class="form-group form-control") }}<br>
     {{ form.problem_name.label(class="form-control-label") }} {{ form.problem_name(class="form-group form-control") }}<br>
     {{ form.text.label }} {{ form.text(class="form-group form-control") }}<br>
     {{ form.problem_submit(class="btn btn-warning")}}
-    {#    {{ form.blog_image.label }} {{ form.blog_image(class="form-group form-control") }}<br>#}
+
 </form>
 </div>
 
