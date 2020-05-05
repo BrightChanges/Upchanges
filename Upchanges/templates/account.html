@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<link rel="stylesheet" href="../static/css/account.css">
 <div class="jumbotron">
      <div class="text-center">
          <h1>{{ current_user.first_name}} {{ current_user.middle_name }} {{ current_user.last_name }}'s setting</h1>
@@ -21,6 +22,18 @@
     {{ form3.update_submit(class="btn btn-warning") }}
 </form>
 </div>
+    <hr class="striped-border">
+    <h3>Temporarily disable my account</h3>
+    <small class="text-muted">After temporarily disabling, you can always come back to our website and reactivate your account!</small><br>
+    <small class="text-muted">Check users' <a href="#" class="text-primary">privacy</a> to see how we manage your information when you disable your account.</small><br>
+    <br>
+    <form>
+    <div class="form-group">
+    <input type="text" class="form-control" id="" placeholder="Tell us why you leave?  (optional)">
+        </div>
+    </form>
+    <a href="#"><button type="button" class="btn btn-danger">Temporarily disable my Upchanges account <span class="iconify" data-icon="eva:person-delete-fill" data-inline="false"></span></button></a>
+    {# The codes for form and deactivate button above will be change to {{ form... }} in the future/ For now, it does nothing #}
 {% endblock %}
 
 

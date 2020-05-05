@@ -5,7 +5,7 @@
 <div id="cool">
 <br>
     <br>
-    <img class="mx-auto d-block" src="../static/logo7.png" width="400" height="120">
+    <img class="mx-auto d-block img-fluid" src="../static/logo7.png" width="400" height="120" alt="Responsive image">
 <h3 class="text-center">~A place where people connect through meaningful actions~</h3>
     <br>
     <br>
@@ -61,7 +61,7 @@
      <div class="card-body ">
          <h7><a class="text-warning" href="{{ url_for('users.user_posts', username=post.creator.first_name+post.creator.middle_name+post.creator.last_name) }}"><img class="text-center rounded" src="{{ url_for('static', filename='profile_pics/'+ post.creator.profile_image) }}" width = "35" height = "35" alt=""> {{ post.creator.first_name}} {{ post.creator.middle_name }} {{ post.creator.last_name }}</a></h7>
          <p></p>
-         <img class="text-center rounded" src="{{ url_for('static', filename='blog_pics/'+ post.blog_image) }}" width = "495" height = "250" alt="">
+         <img class="text-center rounded img-fluid" alt="Responsive image" src="{{ url_for('static', filename='blog_pics/'+ post.blog_image) }}" width = "495" height = "250">
          {# Need caution for post.blog_image on the code above #}
          <p></p>
          <h2><a class="card-tittle text-body problem" href="{{ url_for('blog_posts.blog_view', blog_validated_id=post.blog_id) }}">{{ post.problem_name[0:40]}}..</a></h2>
