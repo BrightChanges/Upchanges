@@ -20,6 +20,7 @@ def create_post():
                                   user_id=current_user.id,
                                   blog_image=add_blog_pic(form.blog_image.data, form.problem_name.data+str(current_user.id))) #####
 
+
         blog_image = url_for('static', filename='profile_pics/' + blog_validated.blog_image)
         db.session.add(blog_validated)
         db.session.commit()
