@@ -30,7 +30,7 @@ class UpdateUserForm(FlaskForm):
     first_name = StringField('First name', validators=[DataRequired()])
     middle_name = StringField('Middle name')
     last_name = StringField('Last name', validators=[DataRequired()])
-    picture = FileField('Update Profile Picture (jpg,jpeg,png)', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     # Specify the type of file of the image the user can upload
     update_submit = SubmitField('Update')
 

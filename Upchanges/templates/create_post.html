@@ -5,11 +5,12 @@
 <form method="POST" action="" enctype="multipart/form-data" >
     {{ form.hidden_tag() }}
     {{ form.blog_image.label }} {{ form.blog_image(class="form-group form-control") }}
-    <small class="form-text text-muted">Only jpg, jpeg, and png images</small><br>
+    <small class="form-text text-muted">Only jpg, jpeg, and png images/ Must required for first time post!</small><br>
     {{ form.problem_name.label(class="form-control-label") }} {{ form.problem_name(class="form-group form-control") }}
     <small class="form-text text-muted">Maximum 140 characters</small><br>
     {{ form.text.label }} {{ form.text(class="form-group form-control", placeholder="Write some informations about the problem") }}<br>
-    {{ form.problem_submit(class="btn btn-warning")}}
+    {{ form.problem_submit(class="btn btn-warning") }}
+    <a href="{{ url_for('core.index') }}"><button type="button" class="btn btn-danger">Cancel </button></a>
 
 </form>
 </div>
