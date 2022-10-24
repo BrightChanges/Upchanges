@@ -1,0 +1,682 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<link href="../static/css/index.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/index.js') }}"></script>
+
+
+{#<div class="first-div">#}
+
+    <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-ride="carousel">
+
+        <div class="carousel-inner">
+
+            <div class="carousel-item active" data-interval="5000">
+                      <img class="mx-auto d-block responsive3" src="../static/Upchanges_New_Homescreen3.png" width="1100" height="400" alt="">
+            </div>
+
+            <div class="carousel-item" data-interval="5000">
+                      <img class="mx-auto d-block responsive3" src="../static/index16.png" width="1100" height="400" alt="">
+            </div>
+
+            <div class="carousel-item" data-interval="5000">
+              <img  src="../static/index2.png" class="mx-auto d-block responsive3" width="1100" height="400" alt="" >
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+          <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+
+{#    <div class="second-div">#}
+{#        <p>hello world</p>#}
+{#    </div>#}
+
+    </div>
+
+{#    </div>#}
+
+
+{#<h3 class="text-center responsive2">~A place where people connect through meaningful actions~</h3>#}
+
+
+{#</div>#}
+    <br>
+    <p>(We also just created a website dedicated for the Upchanges community. Check it out at <a class="color" target="_blank" href="https://www.upchangescommunity.com/">https://www.upchangescommunity.com/</a>)</p>
+
+<br>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<div class="dropdown">
+  <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             {% if country=='Vietnam' %}
+             Lọc loại vấn đề
+             {% elif country=='Japan' %}
+             問題の種類の絞り込み
+             {% elif country=='Estonia' %}
+             Kitsendage probleemi tüüpi
+             {% elif country=='Ghana' %}
+               Filter type of problems
+              {% elif country=='Mongolia' %}
+                Асуудлын төрлийг нарийсгах
+             {% else %}
+             Filter type of problems
+              {% endif %}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item"
+       href="{% if country=='Earth' %}
+             {{ url_for('core.education')}}
+             {% elif country=='Vietnam' %}
+             {{ url_for('vn_core.education') }}
+             {% elif country=='Japan' %}
+             {{ url_for('jp_core.education') }}
+             {% elif country=='USA' %}
+             {{ url_for('usa_core.education') }}
+             {% elif country=='Estonia' %}
+             {{ url_for('estonia_core.education') }}
+             {% elif country=='Ghana' %}
+             {{ url_for('ghana_core.education') }}
+             {% elif country=='Mongolia' %}
+             {{ url_for('mongolia_core.education') }}
+             {% elif country=='Others' %}
+             {{ url_for('other_countries_core.education') }}
+              {% endif %}">
+             {% if country=='Vietnam' %}
+             Giáo dục
+             {% elif country=='Japan' %}
+             教育
+              {% elif country=='Estonia' %}
+               Haridus
+               {% elif country=='Mongolia' %}
+               Боловсрол
+             {% else %}
+             Education
+              {% endif %} <span class="iconify" data-icon="carbon:education" data-inline="false"></span></a>
+
+    <a class="dropdown-item"
+       href="{% if country=='Earth' %}
+             {{ url_for('core.health')}}
+             {% elif country=='Vietnam' %}
+             {{ url_for('vn_core.health') }}
+             {% elif country=='Japan' %}
+             {{ url_for('jp_core.health') }}
+             {% elif country=='USA' %}
+             {{ url_for('usa_core.health') }}
+             {% elif country=='Estonia' %}
+             {{ url_for('estonia_core.health') }}
+             {% elif country=='Ghana' %}
+             {{ url_for('ghana_core.health') }}
+             {% elif country=='Mongolia' %}
+             {{ url_for('mongolia_core.health') }}
+             {% elif country=='Others' %}
+             {{ url_for('other_countries_core.health') }}
+              {% endif %}">
+             {% if country=='Vietnam' %}
+             Sức khoẻ
+             {% elif country=='Japan' %}
+             健康
+             {% elif country=='Estonia' %}
+             Tervis
+             {% elif country=='Mongolia' %}
+             Эрүүл мэнд
+             {% else %}
+             Health
+              {% endif %} <span class="iconify" data-icon="ant-design:heart-outlined" data-inline="false"></span></a>
+
+    <a class="dropdown-item"
+       href="{% if country=='Earth' %}
+             {{ url_for('core.environment')}}
+             {% elif country=='Vietnam' %}
+             {{ url_for('vn_core.environment') }}
+             {% elif country=='Japan' %}
+             {{ url_for('jp_core.environment') }}
+             {% elif country=='USA' %}
+             {{ url_for('usa_core.environment') }}
+             {% elif country=='Estonia' %}
+             {{ url_for('estonia_core.environment') }}
+             {% elif country=='Ghana' %}
+             {{ url_for('ghana_core.environment') }}
+             {% elif country=='Mongolia' %}
+             {{ url_for('mongolia_core.environment') }}
+             {% elif country=='Others' %}
+             {{ url_for('other_countries_core.environment') }}
+              {% endif %}">
+             {% if country=='Vietnam' %}
+             Môi trường
+             {% elif country=='Japan' %}
+             環境
+             {% elif country=='Estonia' %}
+             Keskkond
+             {% elif country=='Mongolia' %}
+             Байгаль орчин
+             {% else %}
+             Environment
+              {% endif %} <span class="iconify" data-icon="emojione-monotone:deciduous-tree" data-inline="false"></span></a>
+
+    <a class="dropdown-item"
+       href="{% if country=='Earth' %}
+             {{ url_for('core.economics')}}
+             {% elif country=='Vietnam' %}
+             {{ url_for('vn_core.economics') }}
+             {% elif country=='Japan' %}
+             {{ url_for('jp_core.economics') }}
+             {% elif country=='USA' %}
+             {{ url_for('usa_core.economics') }}
+             {% elif country=='Estonia' %}
+             {{ url_for('estonia_core.economics') }}
+             {% elif country=='Ghana' %}
+             {{ url_for('ghana_core.economics') }}
+             {% elif country=='Mongolia' %}
+             {{ url_for('mongolia_core.economics') }}
+             {% elif country=='Others' %}
+             {{ url_for('other_countries_core.economics') }}
+              {% endif %}">
+            {% if country=='Vietnam' %}
+             Kinh tế
+             {% elif country=='Japan' %}
+             経済
+             {% elif country=='Estonia' %}
+             Majandus
+             {% elif country=='Mongolia' %}
+             Эдийн засагw
+             {% else %}
+              Economics
+              {% endif %} <span class="iconify" data-icon="emojione-monotone:money-with-wings" data-inline="false"></span></a>
+
+    <a class="dropdown-item"
+       href="{% if country=='Earth' %}
+             {{ url_for('core.society')}}
+             {% elif country=='Vietnam' %}
+             {{ url_for('vn_core.society') }}
+             {% elif country=='Japan' %}
+             {{ url_for('jp_core.society') }}
+             {% elif country=='USA' %}
+             {{ url_for('usa_core.society') }}
+             {% elif country=='Estonia' %}
+             {{ url_for('estonia_core.society') }}
+             {% elif country=='Ghana' %}
+             {{ url_for('ghana_core.society') }}
+             {% elif country=='Mongolia' %}
+             {{ url_for('mongolia_core.society') }}
+             {% elif country=='Others' %}
+             {{ url_for('other_countries_core.society') }}
+              {% endif %}">
+            {% if country=='Vietnam' %}
+             Xã hội
+             {% elif country=='Japan' %}
+             社会
+             {% elif country=='Estonia' %}
+             Selts
+             {% elif country=='Mongolia' %}
+             Нийгэм
+             {% else %}
+             Society
+              {% endif %} <span class="iconify" data-icon="bi:people" data-inline="false"></span></a>
+
+    <a class="dropdown-item"
+       href="{% if country=='Earth' %}
+             {{ url_for('core.index')}}
+             {% elif country=='Vietnam' %}
+             {{ url_for('vn_core.index') }}
+             {% elif country=='Japan' %}
+             {{ url_for('jp_core.index') }}
+             {% elif country=='USA' %}
+             {{ url_for('usa_core.index') }}
+             {% elif country=='Estonia' %}
+             {{ url_for('estonia_core.index') }}
+             {% elif country=='Ghana' %}
+             {{ url_for('ghana_core.index') }}
+             {% elif country=='Mongolia' %}
+             {{ url_for('mongolia_core.index') }}
+             {% elif country=='Others' %}
+             {{ url_for('other_countries_core.index') }}
+              {% endif %}">
+            {% if country=='Vietnam' %}
+             Tất cả các loại
+             {% elif country=='Japan' %}
+             全てのタイプ
+             {% elif country=='Estonia' %}
+             Kõik tüübid
+             {% elif country=='Mongolia' %}
+             Бүх төрлүүд
+             {% else %}
+             All types
+              {% endif %}</a>
+  </div>
+</div>
+
+      <p class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </p>
+
+
+
+        <form class="form-inline my-2 my-lg-0 text-right" method=POST>
+            {% if country=='Vietnam' %}
+             {{ form.search(placeholder="Tìm vấn đề...")}}
+             {% elif country=='Japan' %}
+             {{ form.search(placeholder="問題を探す...")}}
+             {% elif country=='Estonia' %}
+             {{ form.search(placeholder="Probleemide otsimine...")}}
+              {% elif country=='Mongolia' %}
+             {{ form.search(placeholder="Асуудлыг хайж байна...")}}
+             {% else %}
+             {{ form.search(placeholder="Search for problems...")}}
+              {% endif %}
+           <input type=submit value=Search>
+        </form>
+
+      <p class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </p>
+
+
+
+      <div class="dropdown">
+       <button href="#" type="button" class="btn btn-outline-dark" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {% if country== 'Vietnam' %}
+            Quốc gia : Việt Nam
+            <img class="rounded mx-auto d-block" src="../static/countryflags/vietnam_flag.png" alt="" height="25" width="40">
+            {% elif country== 'Japan' %}
+             国: 日本
+             <img class=" rounded mx-auto d-block" src="../static/countryflags/japan.png" alt="" height="25" width="40">
+             {% elif country=='USA' %}
+               Country: United States of America
+                <img class=" rounded mx-auto d-block" src="../static/countryflags/united states.jpg" alt="" height="25" width="40">
+            {% elif country=='Earth' %}
+            Country: Earth
+            <img class=" rounded mx-auto d-block" src="../static/countryflags/earth.png" alt="" height="25" width="40">
+             {% elif country=='Estonia' %}
+              Riik: Eesti
+                <img class=" rounded mx-auto d-block" src="../static/countryflags/flag-of-estonia.jpg" alt="" height="25" width="40">
+              {% elif country=='Ghana' %}
+              Country: Ghana
+                <img class=" rounded mx-auto d-block" src="../static/countryflags/ghana_flag.png" alt="" height="25" width="40">
+              {% elif country=='Mongolia' %}
+              Улс: Монгол
+                <img class=" rounded mx-auto d-block" src="../static/countryflags/mongolia_flag.png" alt="" height="25" width="40">
+              {% elif country=='Others' %}
+              Country: Other Countries
+            {% endif %}<span class="iconify" data-icon="si-glyph:arrow-change" data-inline="false"></span>
+       </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="{{ url_for('vn_core.index')}}">Việt Nam <span class="iconify" data-icon="openmoji:flag-vietnam" data-inline="false"></span></a>
+                <a class="dropdown-item" href="{{ url_for('jp_core.index') }}">日本 <span class="iconify" data-icon="openmoji:flag-japan" data-inline="false"></span></a>
+                <a class="dropdown-item" href="{{ url_for('usa_core.index') }}">United States of America <span class="iconify" data-icon="openmoji:flag-united-states" data-inline="false"></span></a>
+                <a class="dropdown-item" href="{{ url_for('estonia_core.index') }}">Estonia <span class="iconify" data-icon="openmoji:flag-estonia" data-inline="false"></span></a>
+                <a class="dropdown-item" href="{{ url_for('ghana_core.index') }}">Ghana <span class="iconify" data-icon="openmoji:flag-ghana" data-inline="false"></span></a>
+                <a class="dropdown-item" href="{{ url_for('mongolia_core.index') }}">Mongolia <span class="iconify" data-icon="openmoji:flag-mongolia" data-inline="false"></span></a>
+                <a class="dropdown-item" href="{{ url_for('other_countries_core.index') }}">Other countries</a>
+                <a class="dropdown-item" href="{{ url_for('core.index') }}">Earth/All countries <span class="iconify" data-icon="ion:earth" data-inline="false"></span></a>
+
+          </div>
+      </div>
+
+    <p class="nav-item">
+        <a class="nav-link" href="{{ url_for('blog_posts.create_post') }}"><button type="button" class="btn btn-warning">
+            {% if country == "Vietnam" %}
+Đăng một vấn đề
+             {% elif country == "Japan" %}
+問題を投稿する
+              {% elif country == "Estonia" %}
+Postitage probleem
+            {% elif country == "Mongolia" %}
+Асуудал нийтлээрэй
+            {% else %}
+            Post a problem
+            {% endif %}
+
+            <span class="iconify" data-icon="jam:write-f" data-inline="false"></span></button>
+
+        </a>
+    </p>
+
+</nav>
+
+
+<p class="small text-muted text-center">More countries will be added to the website soon! For now, choose "Others" in Country Location if you don't see your country.</p>
+<p class="small text-muted text-center">Use computer <img src="../static/computer.png" width="40" height="40" alt=""> to have the best experience at Upchanges!</p>
+
+{% macro sentence_case(text) %}
+    {{ text[0]|upper}}{{text[1:] }}
+{% endmacro %}
+
+<div class="container row row-cols-1 row-cols-md-2 text-center">
+{% for post in many_posts.items%}
+
+    <div class="card border-dark  mb-3 " style="width: 20rem;">
+     <div class="card-body ">
+         <p class="text-left text-muted"> {% if post.problem_type == 'education' %}
+                 <img src="../static/education.png" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}
+             Giáo dục
+             {% elif country=='Japan' %}
+             教育
+             {% elif country=='Estonia' %}
+             Haridus
+             {% elif country=='Mongolia' %}
+             Боловсрол
+             {% else %}
+             Education
+              {% endif %}
+
+
+                {% elif post.problem_type == 'health' %}
+                     <img src="../static/heart.png" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}
+             Sức khoẻ
+             {% elif country=='Japan' %}
+             健康
+             {% elif country=='Estonia' %}
+             Tervis
+             {% elif country=='Mongolia' %}
+             Эрүүл мэнд
+             {% else %}
+             Health
+              {% endif %}
+
+                {% elif post.problem_type == 'environment' %}
+                     <img src="../static/tree.png" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}
+             Môi trường
+             {% elif country=='Japan' %}
+             環境
+             {% elif country=='Estonia' %}
+             Keskkond
+             {% elif country=='Mongolia' %}
+             Байгаль орчин
+             {% else %}
+             Environment
+              {% endif %}
+
+                {% elif post.problem_type == 'economics' %}
+                     <img src="../static/money.png" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}
+             Kinh tế
+             {% elif country=='Japan' %}
+             経済
+             {% elif country=='Estonia' %}
+             Majandus
+             {% elif country=='Mongolia' %}
+             Эдийн засаг
+             {% else %}
+              Economics
+              {% endif %}
+
+                {% elif post.problem_type == 'society' %}
+                     <img src="../static/people.png" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}data
+             Xã hội
+             {% elif country=='Japan' %}
+             社会
+             {% elif country=='Estonoia' %}
+             Selts
+             {% elif country=='Mongolia' %}
+             Нийгэм
+             {% else %}
+             Society
+              {% endif %}
+
+                {% endif %} |
+             {% if country=='Vietnam' %}
+             Địa điểm: Việt Nam
+             {% elif country=='Japan' %}
+             場所: 日本
+             {% elif country== 'USA' %}
+             Location: United States of America
+             {% elif country== 'Estonia' %}
+             Asukoht: Eesti
+             {% elif country== 'Ghana' %}
+             Location: Ghana
+              {% elif country== 'Mongolia' %}
+             Байршил: Монгол
+                 {% else %}
+                 Location: {{ post.country }}
+              {% endif %}</p>
+
+         <h7><a class="text-warning" href="{{ url_for('users.user_posts', username=post.creator.first_name+post.creator.middle_name+post.creator.last_name) }}"><img class="text-center rounded" src="{{ url_for('static', filename='profile_pics/'+ post.creator.profile_image) }}" width = "35" height = "35" alt=""> {{ post.creator.first_name}} {{ post.creator.middle_name }} {{ post.creator.last_name }}</a></h7>
+         <p></p>
+         <img class="text-center rounded responsive1" alt="" src="{{ url_for('static', filename='blog_pics/'+ post.blog_image) }}" width = "495" height = "250">
+         {# Need caution for post.blog_image on the code above #}
+         <p></p>
+         <h2><a class="card-tittle text-body problem"
+                href="{% if country == 'Vietnam' %}
+                      {{ url_for('vn_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Japan' %}
+                      {{ url_for('jp_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'USA' %}
+                      {{ url_for('usa_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Estonia' %}
+                      {{ url_for('estonia_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Ghana' %}
+                      {{ url_for('ghana_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Mongolia' %}
+                      {{ url_for('mongolia_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Others' %}
+                      {{ url_for('other_countries_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% else %}
+                      {{ url_for('blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% endif %}">
+             {{ post.problem_name[0:40]}}..</a></h2>
+         <p class="card-text">{{ post.text[0:100] }}</p>
+         <p><small class="text-muted">
+             {% if country=='Vietnam' %}
+             Đăng vào:
+             {% elif country=='Japan' %}
+             投稿する日:
+             {% elif country=='Estonia' %}
+             Postitatud:
+              {% elif country=='Mongolia' %}
+             Оруулсан:
+                 {% else %}
+                 Posted on:
+              {% endif %} {{ post.date.strftime('%Y-%m-%d') }}</small></p>
+         <a class="btn btn-warning" href="{% if country == 'Vietnam' %}
+                      {{ url_for('vn_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Japan' %}
+                      {{ url_for('jp_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'USA' %}
+                      {{ url_for('usa_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Estonia' %}
+                      {{ url_for('estonia_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Ghana' %}
+                      {{ url_for('ghana_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Mongolia' %}
+                      {{ url_for('mongolia_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Others' %}
+                      {{ url_for('other_countries_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% else %}
+                      {{ url_for('blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% endif %}">
+             {% if country=='Vietnam' %}
+             Đọc thêm
+             {% elif country=='Japan' %}
+             もっと読む
+             {% elif country=='Estonia' %}
+             Loe rohkem
+              {% elif country=='Mongolia' %}
+             Цааш унших
+                 {% else %}
+                 Read more
+              {% endif %}</a>
+     </div>
+
+
+    </div>
+
+{% endfor %}
+
+
+
+</div>
+
+
+<nav aria-label="Page navigation example">
+         <ul class="pagination justify-content-center">
+
+            {% for page_num in many_posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+
+              {% if page_num %}
+                    {% if many_posts.page==page_num %}
+                        {% if many_posts.page > 1 %}
+                    <li class="page-item">
+                      <a class="page-link" href="{% if country == 'Vietnam' %}
+                          {{ url_for('vn_core.index', page=(page_num-1))}}
+                          {% elif country == 'Japan' %}
+                          {{ url_for('jp_core.index', page=(page_num-1))}}
+                          {% elif country == 'USA' %}
+                          {{ url_for('usa_core.index', page=(page_num-1))}}
+                          {% elif country == 'Estonia' %}
+                          {{ url_for('estonia_core.index', page=(page_num-1))}}
+                          {% elif country == 'Ghana' %}
+                          {{ url_for('ghana_core.index', page=(page_num-1))}}
+                          {% elif country == 'Mongolia' %}
+                          {{ url_for('mongolia_core.index', page=(page_num-1))}}
+                            {% elif country == 'Others' %}
+                          {{ url_for('other_countries_core.index', page=(page_num-1))}}
+                          {% else %}
+                             {{ url_for('core.index', page=(page_num-1))}}
+                             {% endif %}"
+                         aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+
+                    {% endif %}
+                        <li class='page-item disabled'>
+                        <a class="page-link" href="{% if country == 'Vietnam' %}
+                          {{ url_for('vn_core.index', page=page_num)}}
+                          {% elif country == 'Japan' %}
+                          {{ url_for('jp_core.index', page=page_num)}}
+                          {% elif country == 'USA' %}
+                          {{ url_for('usa_core.index', page=page_num)}}
+                          {% elif country == 'Estonia' %}
+                          {{ url_for('estonia_core.index', page=page_num)}}
+                          {% elif country == 'Ghana' %}
+                          {{ url_for('ghana_core.index', page=page_num)}}
+                          {% elif country == 'Mongolia' %}
+                          {{ url_for('mongolia_core.index', page=page_num)}}
+                          {% elif country == 'Others' %}
+                          {{ url_for('other_countries_core.index', page=page_num)}}
+                            {% else %}
+                             {{ url_for('core.index', page=page_num)}}
+                              {% endif %}" >
+                            {{ page_num }}</a>
+                        </li>
+
+                        <li class="page-item">
+                          <a class="page-link" href="{% if country == 'Vietnam' %}
+                          {{ url_for('vn_core.index', page=(page_num + 1))}}
+                          {% elif country == 'Japan' %}
+                          {{ url_for('jp_core.index', page=(page_num + 1))}}
+                          {% elif country == 'USA' %}
+                          {{ url_for('usa_core.index', page=(page_num + 1))}}
+                          {% elif country == 'Estonia' %}
+                          {{ url_for('estonia_core.index', page=(page_num + 1))}}
+                          {% elif country == 'Ghana' %}
+                          {{ url_for('ghana_core.index', page=(page_num + 1))}}
+                          {% elif country == 'Mongolia' %}
+                          {{ url_for('mongolia_core.index', page=(page_num + 1))}}
+                          {% elif country == 'Others' %}
+                          {{ url_for('other_countries_core.index', page=(page_num + 1))}}
+                            {% else %}
+                             {{ url_for('core.index', page=(page_num + 1))}}
+                              {% endif %}"
+                             aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                    {% else %}
+                        <li class='page-item'>
+                        <a class="page-link" href="{% if country == 'Vietnam' %}
+                          {{ url_for('vn_core.index', page=page_num)}}
+                          {% elif country == 'Japan' %}
+                          {{ url_for('jp_core.index', page=page_num)}}
+                          {% elif country == 'USA' %}
+                          {{ url_for('usa_core.index', page=page_num)}}
+                          {% elif country == 'Estonia' %}
+                          {{ url_for('estonia_core.index', page=page_num)}}
+                          {% elif country == 'Ghana' %}
+                          {{ url_for('ghana_core.index', page=page_num)}}
+                          {% elif country == 'Mongolia' %}
+                          {{ url_for('mongolia_core.index', page=page_num)}}
+                          {% elif country == 'Others' %}
+                          {{ url_for('other_countries_core.index', page=page_num)}}
+                            {% else %}
+                             {{ url_for('core.index', page=page_num)}}
+                          {% endif %}">
+                                {{ page_num }}</a>
+                        </li>
+                    {% endif %}
+
+                {% else %}
+{#                  <a href="{{ url_for('core.index') }}"><span class="iconify border-top border-bottom" data-icon="ant-design:home-filled" data-inline="false" ></span></a>#}
+              {% endif %}
+            {% endfor %}
+          </ul>
+     </nav>
+
+
+    {# Index welcome model #}
+<div id="Welcome_model2" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Welcome to Upchanges! <img src="{{ url_for('static', filename='logo.png') }}" width="25" height="25" alt=""></h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Upchanges</strong> is an online platform for the Upchanges community that will help you create positive change projects,recruit more team members for your project, or to support and collaborate with other projects to magnify your project's positive impact</p>
+                <p>(We also just created a website dedicated for the Upchanges community. Check it out at <a class="color" target="_blank" href="https://www.upchangescommunity.com/">https://www.upchangescommunity.com/</a>)</p>
+                <p>Our website is completely <strong> FREE </strong> to use and sign up!</p>
+                <br>
+                <p><strong>You can use Upchanges to:</strong></p>
+
+                <ul>
+                    <li>Search, check out or add problems. <img src="{{ url_for('static', filename='search.png') }}" width="30" height="30" alt=""></li>
+                    <li>See additional information about the problem, ideas to solve it.</li>
+                    <li>Add your idea or project on a problem page. <img src="{{ url_for('static', filename='post1.png') }}" width="25" height="25" alt=""></li>
+                    <li>See, join, support, or collaborate with positive change projects that are added by other peoples. <img src="{{ url_for('static', filename='join.png') }}" width="35" height="35" alt=""></li>
+                    <li>Recruits more team members for your positive change project. <img src="{{ url_for('static', filename='project.png') }}" width="40" height="25" alt=""></li>
+                </ul>
+
+                <br>
+
+                <p>To get started, click below to sign up. If you already signed up, you can log in.</p>
+                <p>You could also click "Sign up" or "Log in" from the navigation bar.</p>
+                <div>
+                            <a class="color" href="{{ url_for('users.login') }}">Log in <span class="iconify" data-icon="bx:bx-log-in" data-inline="false"></span></a>
+                            <a class="color ml-3" href="{{ url_for('users.register') }}">Sign up <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span></a>
+                </div>
+                <br>
+                <p><strong>Our team is working hard to bring more functions to the website and make our community more engaged. Pls stay tuned.</strong></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{#                    <p class="strong">Ways to use Upchanges:</p>#}
+{#                    <li>1. Scroll around the main page and check out problems.</li>#}
+{#                    <li>2. Use the filter buttons to narrow down the kind of problem you want to know more.</li>#}
+{#                    <li>3. If you didn't found the problem you are interested in, just add the problem by yourself.</li>#}
+{#                    <li>4. Click "Read more" on the problem to go to the page of it.</li>#}
+{#                    <li>5. At the problem page, you and other peoples could add more information about the problems,#}
+{#                    ideas to solve the problem, and possible, running, or retired positive change project.</li>#}
+{#                    <li>! To create or add a positive change project, click the "Add your project" -> click "Use this EASY Google Docs template to create your project's Google Docs (click here)" and followed the instructions in that Google Docs.</li>#}
+{#                <br>#}
+{#                <p>For people who don't have a project yet, following the steps above will help you become a change maker:</p>#}
+{#                <p class="text-muted">Identify the problem->Think of ideas to solve it-> Discuss and see ideas from other information-> Create your positive change project by clicking "Add your project"</p>#}
+{#                <p>For people who already have a project, following the steps above will help you recruit more team members for your project:</p>#}
+{#                <p class="text-muted">Add the problem that your project is trying to solve-> Add some of the ideas your project are usingn to solve the problem -> Add your positive change project and recruit others to create a team by clicking "Add your project"</p>#}
+
+{% endblock %}
+
+
+

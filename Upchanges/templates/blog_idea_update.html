@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="../static/css/blog_view.css">
+    <script type="text/javascript" src="../static/javascript/blogview.js"></script>
+    <div class="jumbotron">
+{#        <h5>Update problem's idea</h5>#}
+
+         <h7><a class="text-warning" href="{{ url_for('users.user_posts', username=idea_post.idea_creator.first_name+idea_post.idea_creator.middle_name+idea_post.idea_creator.last_name) }}"><img class="text-center rounded" src="{{ url_for('static', filename='profile_pics/'+ idea_post.idea_creator.profile_image) }}" width = "40" height = "40" alt="">
+             {{ idea_post.idea_creator.first_name}} {{ idea_post.idea_creator.middle_name }} {{ idea_post.idea_creator.last_name }}</a></h7>
+
+      <form id="" method="POST" action="">
+                          {{ form3.hidden_tag() }}
+                          <br>
+                          {{ form3.text2(placeholder="Just write some thought...", id="idea_form") }}
+                          {{ form3.idea_submit(class="btn btn-warning btn-sm") }}
+                          <a href="{{ url_for('blog_posts.blog_view', blog_validated_id=blog_validated_id) }}"><button class="btn btn-secondary btn-sm">Cancel</button></a>
+                      </form>
+    </div>
+
+
+{% endblock %}

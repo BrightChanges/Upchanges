@@ -1,0 +1,1003 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<link href="../static/css/index.css" rel="stylesheet" type="text/css">
+
+
+
+
+<br>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<div class="dropdown">
+  <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             {% if country=='Vietnam' %}
+             Lọc loại vấn đề
+             {% elif country=='Japan' %}
+             問題の種類の絞り込み
+             {% elif country=='Estonia' %}
+             Kitsendage probleemi tüüpi
+             {% elif country=='Ghana' %}
+               Filter type of problems
+              {% elif country=='Mongolia' %}
+                Асуудлын төрлийг нарийсгах
+             {% else %}
+             Filter type of problems
+              {% endif %}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item"
+       href="{% if country=='Earth' %}
+             {{ url_for('core.education')}}
+             {% elif country=='Vietnam' %}
+             {{ url_for('vn_core.education') }}
+             {% elif country=='Japan' %}
+             {{ url_for('jp_core.education') }}
+             {% elif country=='USA' %}
+             {{ url_for('usa_core.education') }}
+             {% elif country=='Estonia' %}
+             {{ url_for('estonia_core.education') }}
+             {% elif country=='Ghana' %}
+             {{ url_for('ghana_core.education') }}
+             {% elif country=='Mongolia' %}
+             {{ url_for('mongolia_core.education') }}
+             {% elif country=='Others' %}
+             {{ url_for('other_countries_core.education') }}
+              {% endif %}">
+             {% if country=='Vietnam' %}
+             Giáo dục
+             {% elif country=='Japan' %}
+             教育
+              {% elif country=='Estonia' %}
+               Haridus
+               {% elif country=='Mongolia' %}
+               Боловсрол
+             {% else %}
+             Education
+              {% endif %} <span class="iconify" data-icon="carbon:education" data-inline="false"></span></a>
+
+    <a class="dropdown-item"
+       href="{% if country=='Earth' %}
+             {{ url_for('core.health')}}
+             {% elif country=='Vietnam' %}
+             {{ url_for('vn_core.health') }}
+             {% elif country=='Japan' %}
+             {{ url_for('jp_core.health') }}
+             {% elif country=='USA' %}
+             {{ url_for('usa_core.health') }}
+             {% elif country=='Estonia' %}
+             {{ url_for('estonia_core.health') }}
+             {% elif country=='Ghana' %}
+             {{ url_for('ghana_core.health') }}
+             {% elif country=='Mongolia' %}
+             {{ url_for('mongolia_core.health') }}
+             {% elif country=='Others' %}
+             {{ url_for('other_countries_core.health') }}
+              {% endif %}">
+             {% if country=='Vietnam' %}
+             Sức khoẻ
+             {% elif country=='Japan' %}
+             健康
+             {% elif country=='Estonia' %}
+             Tervis
+             {% elif country=='Mongolia' %}
+             Эрүүл мэнд
+             {% else %}
+             Health
+              {% endif %} <span class="iconify" data-icon="ant-design:heart-outlined" data-inline="false"></span></a>
+
+    <a class="dropdown-item"
+       href="{% if country=='Earth' %}
+             {{ url_for('core.environment')}}
+             {% elif country=='Vietnam' %}
+             {{ url_for('vn_core.environment') }}
+             {% elif country=='Japan' %}
+             {{ url_for('jp_core.environment') }}
+             {% elif country=='USA' %}
+             {{ url_for('usa_core.environment') }}
+             {% elif country=='Estonia' %}
+             {{ url_for('estonia_core.environment') }}
+             {% elif country=='Ghana' %}
+             {{ url_for('ghana_core.environment') }}
+             {% elif country=='Mongolia' %}
+             {{ url_for('mongolia_core.environment') }}
+             {% elif country=='Others' %}
+             {{ url_for('other_countries_core.environment') }}
+              {% endif %}">
+             {% if country=='Vietnam' %}
+             Môi trường
+             {% elif country=='Japan' %}
+             環境
+             {% elif country=='Estonia' %}
+             Keskkond
+             {% elif country=='Mongolia' %}
+             Байгаль орчин
+             {% else %}
+             Environment
+              {% endif %} <span class="iconify" data-icon="emojione-monotone:deciduous-tree" data-inline="false"></span></a>
+
+    <a class="dropdown-item"
+       href="{% if country=='Earth' %}
+             {{ url_for('core.economics')}}
+             {% elif country=='Vietnam' %}
+             {{ url_for('vn_core.economics') }}
+             {% elif country=='Japan' %}
+             {{ url_for('jp_core.economics') }}
+             {% elif country=='USA' %}
+             {{ url_for('usa_core.economics') }}
+             {% elif country=='Estonia' %}
+             {{ url_for('estonia_core.economics') }}
+             {% elif country=='Ghana' %}
+             {{ url_for('ghana_core.economics') }}
+             {% elif country=='Mongolia' %}
+             {{ url_for('mongolia_core.economics') }}
+             {% elif country=='Others' %}
+             {{ url_for('other_countries_core.economics') }}
+              {% endif %}">
+            {% if country=='Vietnam' %}
+             Kinh tế
+             {% elif country=='Japan' %}
+             経済
+             {% elif country=='Estonia' %}
+             Majandus
+             {% elif country=='Mongolia' %}
+             Эдийн засагw
+             {% else %}
+              Economics
+              {% endif %} <span class="iconify" data-icon="emojione-monotone:money-with-wings" data-inline="false"></span></a>
+
+    <a class="dropdown-item"
+       href="{% if country=='Earth' %}
+             {{ url_for('core.society')}}
+             {% elif country=='Vietnam' %}
+             {{ url_for('vn_core.society') }}
+             {% elif country=='Japan' %}
+             {{ url_for('jp_core.society') }}
+             {% elif country=='USA' %}
+             {{ url_for('usa_core.society') }}
+             {% elif country=='Estonia' %}
+             {{ url_for('estonia_core.society') }}
+             {% elif country=='Ghana' %}
+             {{ url_for('ghana_core.society') }}
+             {% elif country=='Mongolia' %}
+             {{ url_for('mongolia_core.society') }}
+             {% elif country=='Others' %}
+             {{ url_for('other_countries_core.society') }}
+              {% endif %}">
+            {% if country=='Vietnam' %}
+             Xã hội
+             {% elif country=='Japan' %}
+             社会
+             {% elif country=='Estonia' %}
+             Selts
+             {% elif country=='Mongolia' %}
+             Нийгэм
+             {% else %}
+             Society
+              {% endif %} <span class="iconify" data-icon="bi:people" data-inline="false"></span></a>
+
+    <a class="dropdown-item"
+       href="{% if country=='Earth' %}
+             {{ url_for('core.index')}}
+             {% elif country=='Vietnam' %}
+             {{ url_for('vn_core.index') }}
+             {% elif country=='Japan' %}
+             {{ url_for('jp_core.index') }}
+             {% elif country=='USA' %}
+             {{ url_for('usa_core.index') }}
+             {% elif country=='Estonia' %}
+             {{ url_for('estonia_core.index') }}
+             {% elif country=='Ghana' %}
+             {{ url_for('ghana_core.index') }}
+             {% elif country=='Mongolia' %}
+             {{ url_for('mongolia_core.index') }}
+             {% elif country=='Others' %}
+             {{ url_for('other_countries_core.index') }}
+              {% endif %}">
+            {% if country=='Vietnam' %}
+             Tất cả các loại
+             {% elif country=='Japan' %}
+             全てのタイプ
+             {% elif country=='Estonia' %}
+             Kõik tüübid
+             {% elif country=='Mongolia' %}
+             Бүх төрлүүд
+             {% else %}
+             All types
+              {% endif %}</a>
+  </div>
+</div>
+
+      <p class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </p>
+
+
+
+        <form class="form-inline my-2 my-lg-0 text-right" method=POST>
+            {% if country=='Vietnam' %}
+             {{ form.search(placeholder="Tìm vấn đề...")}}
+             {% elif country=='Japan' %}
+             {{ form.search(placeholder="問題を探す...")}}
+             {% elif country=='Estonia' %}
+             {{ form.search(placeholder="Probleemide otsimine...")}}
+              {% elif country=='Mongolia' %}
+             {{ form.search(placeholder="Асуудлыг хайж байна...")}}
+             {% else %}
+             {{ form.search(placeholder="Search for problems...")}}
+              {% endif %}
+           <input type=submit value=Search>
+        </form>
+
+      <p class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </p>
+
+
+
+      <div class="dropdown">
+       <button href="#" type="button" class="btn btn-outline-dark" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {% if country== 'Vietnam' %}
+            Quốc gia : Việt Nam
+            <img class="rounded mx-auto d-block" src="../static/countryflags/vietnam_flag.png" alt="" height="25" width="40">
+            {% elif country== 'Japan' %}
+             国: 日本
+             <img class=" rounded mx-auto d-block" src="../static/countryflags/japan.png" alt="" height="25" width="40">
+             {% elif country=='USA' %}
+               Country: United States of America
+                <img class=" rounded mx-auto d-block" src="../static/countryflags/united states.jpg" alt="" height="25" width="40">
+            {% elif country=='Earth' %}
+            Country: Earth
+            <img class=" rounded mx-auto d-block" src="../static/countryflags/earth.png" alt="" height="25" width="40">
+             {% elif country=='Estonia' %}
+              Riik: Eesti
+                <img class=" rounded mx-auto d-block" src="../static/countryflags/flag-of-estonia.jpg" alt="" height="25" width="40">
+              {% elif country=='Ghana' %}
+              Country: Ghana
+                <img class=" rounded mx-auto d-block" src="../static/countryflags/ghana_flag.png" alt="" height="25" width="40">
+              {% elif country=='Mongolia' %}
+              Улс: Монгол
+                <img class=" rounded mx-auto d-block" src="../static/countryflags/mongolia_flag.png" alt="" height="25" width="40">
+              {% elif country=='Others' %}
+              Country: Other Countries
+                <img class=" rounded mx-auto d-block" src="../static/countryflags/other_countries.jpg" alt="" height="25" width="40">
+            {% endif %}<span class="iconify" data-icon="si-glyph:arrow-change" data-inline="false"></span>
+       </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="{{ url_for('vn_core.index')}}">Việt Nam <span class="iconify" data-icon="openmoji:flag-vietnam" data-inline="false"></span></a>
+                <a class="dropdown-item" href="{{ url_for('jp_core.index') }}">日本 <span class="iconify" data-icon="openmoji:flag-japan" data-inline="false"></span></a>
+                <a class="dropdown-item" href="{{ url_for('usa_core.index') }}">United States of America <span class="iconify" data-icon="openmoji:flag-united-states" data-inline="false"></span></a>
+                <a class="dropdown-item" href="{{ url_for('estonia_core.index') }}">Estonia <span class="iconify" data-icon="openmoji:flag-estonia" data-inline="false"></span></a>
+                <a class="dropdown-item" href="{{ url_for('ghana_core.index') }}">Ghana <span class="iconify" data-icon="openmoji:flag-ghana" data-inline="false"></span></a>
+                <a class="dropdown-item" href="{{ url_for('mongolia_core.index') }}">Mongolia <span class="iconify" data-icon="openmoji:flag-mongolia" data-inline="false"></span></a>
+                <a class="dropdown-item" href="{{ url_for('other_countries_core.index') }}">Other countries <img class=" rounded mx-auto d-block" src="../static/countryflags/other_countries.jpg" alt="" height="5" width="10"></a>
+                <a class="dropdown-item" href="{{ url_for('core.index') }}">Earth/All countries <span class="iconify" data-icon="ion:earth" data-inline="false"></span></a>
+
+          </div>
+      </div>
+
+    <p class="nav-item">
+        <a class="nav-link" href="{{ url_for('blog_posts.create_post') }}"><button type="button" class="btn btn-warning">
+            {% if country == "Vietnam" %}
+Đăng một vấn đề
+             {% elif country == "Japan" %}
+問題を投稿する
+              {% elif country == "Estonia" %}
+Postitage probleem
+            {% elif country == "Mongolia" %}
+Асуудал нийтлээрэй
+            {% else %}
+            Post a problem
+            {% endif %}
+
+            <span class="iconify" data-icon="jam:write-f" data-inline="false"></span></button>
+
+        </a>
+    </p>
+
+</nav>
+
+
+<p></p>
+
+{% macro sentence_case(text) %}
+    {{ text[0]|upper}}{{text[1:] }}
+{% endmacro %}
+
+<div class="container row row-cols-1 row-cols-md-2 text-center">
+{% for post in many_posts.items%}
+
+    <div class="card border-dark  mb-3 " style="width: 20rem;">
+     <div class="card-body ">
+         <p class="text-left text-muted"> {% if post.problem_type == 'education' %}
+                 <img src="../static/education.png" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}
+             Giáo dục
+             {% elif country=='Japan' %}
+             教育
+             {% elif country=='Estonia' %}
+             Haridus
+             {% elif country=='Mongolia' %}
+             Боловсрол
+             {% else %}
+             Education
+              {% endif %}
+
+
+                {% elif post.problem_type == 'health' %}
+                     <img src="../static/heart.png" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}
+             Sức khoẻ
+             {% elif country=='Japan' %}
+             健康
+             {% elif country=='Estonia' %}
+             Tervis
+             {% elif country=='Mongolia' %}
+             Эрүүл мэнд
+             {% else %}
+             Health
+              {% endif %}
+
+                {% elif post.problem_type == 'environment' %}
+                     <img src="../static/tree.png" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}
+             Môi trường
+             {% elif country=='Japan' %}
+             環境
+             {% elif country=='Estonia' %}
+             Keskkond
+             {% elif country=='Mongolia' %}
+             Байгаль орчин
+             {% else %}
+             Environment
+              {% endif %}
+
+                {% elif post.problem_type == 'economics' %}
+                     <img src="../static/money.png" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}
+             Kinh tế
+             {% elif country=='Japan' %}
+             経済
+             {% elif country=='Estonia' %}
+             Majandus
+             {% elif country=='Mongolia' %}
+             Эдийн засаг
+             {% else %}
+              Economics
+              {% endif %}
+
+                {% elif post.problem_type == 'society' %}
+                     <img src="../static/people.png" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}data
+             Xã hội
+             {% elif country=='Japan' %}
+             社会
+             {% elif country=='Estonoia' %}
+             Selts
+             {% elif country=='Mongolia' %}
+             Нийгэм
+             {% else %}
+             Society
+              {% endif %}
+
+                {% endif %} |
+             {% if country=='Vietnam' %}
+             Địa điểm: Việt Nam
+             {% elif country=='Japan' %}
+             場所: 日本
+             {% elif country== 'USA' %}
+             Location: United States of America
+             {% elif country== 'Estonia' %}
+             Asukoht: Eesti
+             {% elif country== 'Ghana' %}
+             Location: Ghana
+              {% elif country== 'Mongolia' %}
+             Байршил: Монгол
+                 {% else %}
+                 Location: {{ post.country }}
+              {% endif %}</p>
+
+         <h7><a class="text-warning" href="{{ url_for('users.user_posts', username=post.creator.first_name+post.creator.middle_name+post.creator.last_name) }}"><img class="text-center rounded" src="{{ url_for('static', filename='profile_pics/'+ post.creator.profile_image) }}" width = "35" height = "35" alt=""> {{ post.creator.first_name}} {{ post.creator.middle_name }} {{ post.creator.last_name }}</a></h7>
+         <p></p>
+         <img class="text-center rounded responsive1" alt="" src="{{ url_for('static', filename='blog_pics/'+ post.blog_image) }}" width = "495" height = "250">
+         {# Need caution for post.blog_image on the code above #}
+         <p></p>
+         <h2><a class="card-tittle text-body problem"
+                href="{% if country == 'Vietnam' %}
+                      {{ url_for('vn_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Japan' %}
+                      {{ url_for('jp_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'USA' %}
+                      {{ url_for('usa_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Estonia' %}
+                      {{ url_for('estonia_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Ghana' %}
+                      {{ url_for('ghana_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Mongolia' %}
+                      {{ url_for('mongolia_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Others' %}
+                      {{ url_for('other_countries_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% else %}
+                      {{ url_for('blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% endif %}">
+             {{ post.problem_name[0:40]}}..</a></h2>
+         <p class="card-text">{{ post.text[0:100] }}</p>
+         <p><small class="text-muted">
+             {% if country=='Vietnam' %}
+             Đăng vào:
+             {% elif country=='Japan' %}
+             投稿する日:
+             {% elif country=='Estonia' %}
+             Postitatud:
+              {% elif country=='Mongolia' %}
+             Оруулсан:
+                 {% else %}
+                 Posted on:
+              {% endif %} {{ post.date.strftime('%Y-%m-%d') }}</small></p>
+         <a class="btn btn-warning" href="{% if country == 'Vietnam' %}
+                      {{ url_for('vn_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Japan' %}
+                      {{ url_for('jp_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'USA' %}
+                      {{ url_for('usa_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Estonia' %}
+                      {{ url_for('estonia_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Ghana' %}
+                      {{ url_for('ghana_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Mongolia' %}
+                      {{ url_for('mongolia_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% elif country == 'Others' %}
+                      {{ url_for('other_countries_blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% else %}
+                      {{ url_for('blog_posts.blog_view', blog_validated_id=post.blog_id) }}
+                      {% endif %}">
+             {% if country=='Vietnam' %}
+             Đọc thêm
+             {% elif country=='Japan' %}
+             もっと読む
+             {% elif country=='Estonia' %}
+             Loe rohkem
+              {% elif country=='Mongolia' %}
+             Цааш унших
+                 {% else %}
+                 Read more
+              {% endif %}</a>
+     </div>
+
+
+    </div>
+
+{% endfor %}
+
+
+
+</div>
+
+{# START ADDING THE ROUTES OF COUNTRIES OF FRIENDS FROM DOWN HERE: #}
+<nav aria-label="Page navigation example">
+         <ul class="pagination justify-content-center">
+
+            {% for page_num in many_posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+
+              {% if page_num %}
+                    {% if many_posts.page==page_num %}
+                        {% if many_posts.page > 1 %}
+                    <li class="page-item">
+                      <a class="page-link" href="{% if country == 'Vietnam' %}
+                         {% if problem_type == 'education' %}
+                         {{ url_for('vn_core.education', page=(page_num-1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('vn_core.health', page=(page_num-1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('vn_core.environment', page=(page_num-1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('vn_core.economics', page=(page_num-1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('vn_core.society', page=(page_num-1))}}
+                         {% else %}
+                          {{ url_for('vn_core.index', page=(page_num-1))}}
+                          {% endif %}
+
+
+                          {% elif country == 'Japan' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('jp_core.education', page=(page_num-1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('jp_core.health', page=(page_num-1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('jp_core.environment', page=(page_num-1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('jp_core.economics', page=(page_num-1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('jp_core.society', page=(page_num-1))}}
+                         {% else %}
+                          {{ url_for('jp_core.index', page=(page_num-1))}}
+                          {% endif %}
+
+                          {% elif country == 'USA' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('usa_core.education', page=(page_num-1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('usa_core.health', page=(page_num-1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('usa_core.environment', page=(page_num-1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('usa_core.economics', page=(page_num-1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('usa_core.society', page=(page_num-1))}}
+                         {% else %}
+                          {{ url_for('usa_core.index', page=(page_num-1))}}
+                          {% endif %}
+
+                          {% elif country == 'Estonia' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('estonia_core.education', page=(page_num-1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('estonia_core.health', page=(page_num-1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('estonia_core.environment', page=(page_num-1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('estonia_core.economics', page=(page_num-1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('estonia_core.society', page=(page_num-1))}}
+                         {% else %}
+                          {{ url_for('estonia_core.index', page=(page_num-1))}}
+                          {% endif %}
+
+                          {% elif country == 'Mongolia' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('mongolia_core.education', page=(page_num-1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('mongolia_core.health', page=(page_num-1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('mongolia_core.environment', page=(page_num-1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('mongolia_core.economics', page=(page_num-1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('mongolia_core.society', page=(page_num-1))}}
+                         {% else %}
+                          {{ url_for('mongolia_core.index', page=(page_num-1))}}
+                          {% endif %}
+
+                          {% elif country == 'Ghana' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('ghana_core.education', page=(page_num-1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('ghana_core.health', page=(page_num-1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('ghana_core.environment', page=(page_num-1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('ghana_core.economics', page=(page_num-1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('ghana_core.society', page=(page_num-1))}}
+                         {% else %}
+                          {{ url_for('ghana_core.index', page=(page_num-1))}}
+                          {% endif %}
+
+                          {% elif country == 'Others' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('other_countries_core.education', page=(page_num-1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('other_countries_core.health', page=(page_num-1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('other_countries_core.environment', page=(page_num-1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('other_countries_core.economics', page=(page_num-1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('other_countries_core.society', page=(page_num-1))}}
+                         {% else %}
+                          {{ url_for('other_countries_core.index', page=(page_num-1))}}
+                          {% endif %}
+
+                            {% else %}
+                             {% if problem_type == 'education' %}
+                         {{ url_for('core.education', page=(page_num-1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('core.health', page=(page_num-1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('core.environment', page=(page_num-1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('core.economics', page=(page_num-1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('core.society', page=(page_num-1))}}
+                         {% else %}
+                          {{ url_for('core.index', page=(page_num-1))}}
+                          {% endif %}
+
+                             {% endif %}"
+                         aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+
+                    {% endif %}
+                        <li class='page-item disabled'>
+                        <a class="page-link" href="{% if country == 'Vietnam' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('vn_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('vn_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('vn_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('vn_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('vn_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('vn_core.index', page=page_num)}}
+                          {% endif %}
+
+                          {% elif country == 'Japan' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('jp_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('jp_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('jp_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('jp_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('jp_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('jp_core.index', page=page_num)}}
+                          {% endif %}
+
+                          {% elif country == 'USA' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('usa_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('usa_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('usa_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('usa_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('usa_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('usa_core.index', page=page_num)}}
+                          {% endif %}
+
+                          {% elif country == 'Estonia' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('estonia_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('estonia_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('estonia_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('estonia_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('estonia_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('estonia_core.index', page=page_num)}}
+                          {% endif %}
+
+                          {% elif country == 'Ghana' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('ghana_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('ghana_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('ghana_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('ghana_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('ghana_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('ghana_core.index', page=page_num)}}
+                          {% endif %}
+
+                          {% elif country == 'Mongolia' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('mongolia_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('mongolia_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('mongolia_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('mongolia_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('mongolia_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('mongolia_core.index', page=page_num)}}
+                          {% endif %}
+
+                          {% elif country == 'Others' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('other_countries_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('other_countries_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('other_countries_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('other_countries_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('other_countries_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('other_countries_core.index', page=page_num)}}
+                          {% endif %}
+
+                            {% else %}
+                             {% if problem_type == 'education' %}
+                         {{ url_for('core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('core.index', page=page_num)}}
+                          {% endif %}
+
+                              {% endif %}" >
+                            {{ page_num }}</a>
+                        </li>
+
+                        <li class="page-item">
+                          <a class="page-link" href="{% if country == 'Vietnam' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('vn_core.education', page=(page_num + 1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('vn_core.health', page=(page_num + 1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('vn_core.environment', page=(page_num + 1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('vn_core.economics', page=(page_num + 1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('vn_core.society', page=(page_num + 1))}}
+                         {% else %}
+                          {{ url_for('vn_core.index', page=(page_num + 1))}}
+                          {% endif %}
+
+                          {% elif country == 'Japan' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('jp_core.education', page=(page_num + 1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('jp_core.health', page=(page_num + 1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('jp_core.environment', page=(page_num + 1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('jp_core.economics', page=(page_num + 1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('jp_core.society', page=(page_num + 1))}}
+                         {% else %}
+                          {{ url_for('jp_core.index', page=(page_num + 1))}}
+                          {% endif %}
+
+                          {% elif country == 'USA' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('usa_core.education', page=(page_num + 1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('usa_core.health', page=(page_num + 1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('usa_core.environment', page=(page_num + 1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('usa_core.economics', page=(page_num + 1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('usa_core.society', page=(page_num + 1))}}
+                         {% else %}
+                          {{ url_for('usa_core.index', page=(page_num + 1))}}
+                          {% endif %}
+
+                          {% elif country == 'Estonia' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('estonia_core.education', page=(page_num + 1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('estonia_core.health', page=(page_num + 1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('estonia_core.environment', page=(page_num + 1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('estonia_core.economics', page=(page_num + 1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('estonia_core.society', page=(page_num + 1))}}
+                         {% else %}
+                          {{ url_for('estonia_core.index', page=(page_num + 1))}}
+                          {% endif %}
+
+                          {% elif country == 'Ghana' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('ghana_core.education', page=(page_num + 1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('ghana_core.health', page=(page_num + 1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('ghana_core.environment', page=(page_num + 1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('ghana_core.economics', page=(page_num + 1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('ghana_core.society', page=(page_num + 1))}}
+                         {% else %}
+                          {{ url_for('ghana_core.index', page=(page_num + 1))}}
+                          {% endif %}
+
+                          {% elif country == 'Mongolia' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('mongolia_core.education', page=(page_num + 1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('mongolia_core.health', page=(page_num + 1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('mongolia_core.environment', page=(page_num + 1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('mongolia_core.economics', page=(page_num + 1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('mongolia_core.society', page=(page_num + 1))}}
+                         {% else %}
+                          {{ url_for('mongolia_core.index', page=(page_num + 1))}}
+                          {% endif %}
+
+                          {% elif country == 'Others' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('other_countries_core.education', page=(page_num + 1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('other_countries_core.health', page=(page_num + 1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('other_countries_core.environment', page=(page_num + 1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('other_countries_core.economics', page=(page_num + 1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('other_countries_core.society', page=(page_num + 1))}}
+                         {% else %}
+                          {{ url_for('other_countries_core.index', page=(page_num + 1))}}
+                          {% endif %}
+
+                            {% else %}
+                             {% if problem_type == 'education' %}
+                         {{ url_for('core.education', page=(page_num + 1))}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('core.health', page=(page_num + 1))}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('core.environment', page=(page_num + 1))}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('core.economics', page=(page_num + 1))}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('core.society', page=(page_num + 1))}}
+                         {% else %}
+                          {{ url_for('core.index', page=(page_num + 1))}}
+                          {% endif %}
+
+                              {% endif %}"
+                             aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                    {% else %}
+                        <li class='page-item'>
+                        <a class="page-link" href="{% if country == 'Vietnam' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('vn_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('vn_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('vn_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('vn_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('vn_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('vn_core.index', page=page_num)}}
+                          {% endif %}
+
+                          {% elif country == 'Japan' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('jp_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('jp_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('jp_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('jp_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('jp_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('jp_core.index', page=page_num)}}
+                          {% endif %}
+
+                          {% elif country == 'USA' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('usa_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('usa_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('usa_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('usa_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('usa_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('usa_core.index', page=page_num)}}
+                          {% endif %}
+
+                          {% elif country == 'Estonia' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('estonia_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('estonia_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('estonia_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('estonia_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('estonia_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('estonia_core.index', page=page_num)}}
+                          {% endif %}
+
+                          {% elif country == 'Ghana' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('ghana_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('ghana_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('ghana_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('ghana_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('ghana_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('ghana_core.index', page=page_num)}}
+                          {% endif %}
+
+                          {% elif country == 'Mongolia' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('mongolia_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('mongolia_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('mongolia_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('mongolia_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('mongolia_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('mongolia_core.index', page=page_num)}}
+                          {% endif %}
+
+                          {% elif country == 'Others' %}
+                          {% if problem_type == 'education' %}
+                         {{ url_for('other_countries_core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('other_countries_core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('other_countries_core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('other_countries_core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('other_countries_core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('other_countries_core.index', page=page_num)}}
+                          {% endif %}
+
+                            {% else %}
+                             {% if problem_type == 'education' %}
+                         {{ url_for('core.education', page=page_num)}}
+                         {% elif problem_type == 'health' %}
+                         {{ url_for('core.health', page=page_num)}}
+                         {% elif problem_type == 'environment' %}
+                         {{ url_for('core.environment', page=page_num)}}
+                         {% elif problem_type == 'economics' %}
+                         {{ url_for('core.economics', page=page_num)}}
+                         {% elif problem_type == 'society' %}
+                         {{ url_for('core.society', page=page_num)}}
+                         {% else %}
+                          {{ url_for('core.index', page=page_num)}}
+                          {% endif %}
+
+                              {% endif %}" >
+                            {{ page_num }}</a>
+                        </li>
+                    {% endif %}
+
+                {% else %}
+{#                  <a href="{{ url_for('core.index') }}"><span class="iconify border-top border-bottom" data-icon="ant-design:home-filled" data-inline="false" ></span></a>#}
+              {% endif %}
+            {% endfor %}
+          </ul>
+     </nav>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+
+
+{% block content %}
+    <br>
+<h3>Resend account confirmation email</h3>
+    <br>
+    <p>Please input the email you had signed up but not yet confirmed:</p>
+    <form method="POST" action="" enctype="multipart/form-data" >
+            {{ form.hidden_tag() }}
+     {{ form.email.label }} {{ form.email() }}
+     <br>
+    {{ form.resend_post(class="btn btn-warning") }}
+    <a href="{{ url_for('core.index') }}"><button type="button" class="btn btn-danger">Cancel </button></a>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+.space{
+    visibility: hidden;
+}
+
+
+
+#cool{
+background-image: url("../logo8.png");
+background-repeat: no-repeat;
+background-size: 1100px 400px;
+width: 100%;
+/*background-position: center;*/
+}
+
+.responsive1{
+    width: 100%;
+    height: 250px;
+}
+
+.responsive3{
+    width: 100%;
+    height: 350px;
+}
+
+
+/*.first-div{*/
+/*display: inline-block;*/
+/*}*/
+
+
+/*.second-div{*/
+/*    display: inline-block;*/
+/*    margin-left: 15px;*/
+/*    vertical-align: middle;*/
+/*    margin-top: auto;*/
+/*}*/
+
+
+/*.image{*/
+/*    vertical-align: middle;*/
+/*  display: inline-block;*/
+/*}*/
+
+@media screen and (min-width: 600px){
+    .responsive2{
+    font-size:2vw
+}
+}
+
+@media screen and (max-width: 600px){
+    .responsive2{
+    font-size:3vw
+}
+}
+/*.problem{*/
+/*    width: 200px;*/
+/*    overflow: no-display;*/
+/*    white-space: nowrap;*/
+/*    text-overflow: ellipsis;*/
+/*}*/

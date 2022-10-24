@@ -1,0 +1,481 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blog_view.css') }}"
+          xmlns="http://www.w3.org/1999/html">
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/blogview.js') }}"></script>
+
+    {% macro sentence_case(text) %}
+     {{ text[0]|upper}}{{text[1:] }}
+    {% endmacro %}
+
+
+<div class="jumbotron text-left">
+  <div class="shadow p-3 mb-5 bg-white rounded" style="width: 35rem; background-color: #3498db;">
+    <p class="text-left text-muted"> {% if post.problem_type == 'education' %}
+                 <img src="{{ url_for('static', filename='education.png') }}" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}
+             Giáo dục
+             {% elif country=='Japan' %}
+             教育
+             {% else %}
+             Education
+              {% endif %}
+
+
+                {% elif post.problem_type == 'health' %}
+                     <img src="{{ url_for('static', filename='heart.png') }}" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}
+             Sức khoẻ
+             {% elif country=='Japan' %}
+             健康
+             {% else %}
+             Health
+              {% endif %}
+
+                {% elif post.problem_type == 'environment' %}
+                     <img src="{{ url_for('static', filename='tree.png') }}" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}
+             Môi trường
+             {% elif country=='Japan' %}
+             環境
+             {% else %}
+             Environment
+              {% endif %}
+
+                {% elif post.problem_type == 'economics' %}
+                     <img src="{{ url_for('static', filename='money.png') }}" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}
+             Kinh tế
+             {% elif country=='Japan' %}
+             経済
+             {% else %}
+              Economics
+              {% endif %}
+
+                {% elif post.problem_type == 'society' %}
+                     <img src="{{ url_for('static', filename='people.png') }}" width="25" height="25" alt="">
+             {% if country=='Vietnam' %}data
+             Xã hội
+             {% elif country=='Japan' %}
+             社会
+             {% else %}
+             Society
+              {% endif %}
+
+                {% endif %} |
+             {% if country=='Vietnam' %}
+             Địa điểm: Việt Nam
+             {% elif country=='Japan' %}
+             場所: 日本
+             {% elif country== 'USA' %}
+             Location: United States of America
+                 {% else %}
+                 Location: {{ post.country }}
+              {% endif %}</p>
+    <h1><span class="text-muted">Problem name:</span> {{ post.problem_name }}</h1>
+    <img class="text-center rounded responsive1 shadow " src="{{ url_for('static', filename='blog_pics/'+ post.blog_image) }}" width = "495" height = "250" alt="">
+    <p></p>
+  <nav class="navbar navbar-light" style="width: 30rem;">
+      <div class="nav-item">
+          <h5>Problem's info <span class="iconify" data-icon="carbon:information" data-inline="false"></span></h5>
+          </div>
+
+      {% if post.creator == current_user %}
+
+        {% else %}
+          <div class="nav-item">
+
+          {% if id_check == 0 %}
+              <a href="{{ url_for('users.register') }}"><button type="button" id="" class="btn btn-primary btn-sm">Sign up and add info <span class="iconify" data-icon="fa-regular:comment" data-inline="false"></span></button></a>
+
+              {% else %}
+                  {% if update_status == 1 %}
+                      <form id="" method="POST" action="">
+                          {{ form2.hidden_tag() }}
+                          <br>
+                          {{ form2.text(placeholder="Add info about this problem...", id="comment_form") }}
+                          {{ form2.comment_submit(class="btn btn-warning btn-sm") }}
+                      </form>
+
+                      {% else %}
+                       <button type="button" id="comment_button" class="btn btn-primary btn-sm">Add more information about this problem <span class="iconify" data-icon="fa-regular:comment" data-inline="false"></span></button>
+                      <form id="form2" method="POST" action="">
+                          {{ form2.hidden_tag() }}
+                          <br>
+                          {{ form2.text(placeholder="Add info about this problem...", id="comment_form") }}
+                          {{ form2.comment_submit(class="btn btn-warning btn-sm") }}
+                      </form>
+                      {% endif %}
+
+                   {% endif %}
+
+
+              </div>
+      {% endif %}
+  </nav>
+{#<small class="text-muted">  Scroll down for more info <span class="iconify" data-icon="carbon:information" data-inline="false"></span></small>#}
+    <div class="border rounded p-2">
+       <h7><a class="text-warning" href="{{ url_for('users.user_posts', username=post.creator.first_name+post.creator.middle_name+post.creator.last_name) }}"><img class="text-center rounded" src="{{ url_for('static', filename='profile_pics/'+ post.creator.profile_image) }}" width = "40" height = "40" alt=""> {{ post.creator.first_name}} {{ post.creator.middle_name }} {{ post.creator.last_name }}</a></h7>
+        <small class="text-muted ml-5">
+             {% if country=='Vietnam' %}
+             Đăng vào:
+             {% elif country=='Japan' %}
+             投稿する日:
+                 {% else %}
+                 ORIGINAL POST<span class="iconify" data-icon="bi:star" data-inline="false"></span> | Posted on:
+              {% endif %} {{ post.date.strftime('%Y-%m-%d') }}</small>
+        <p class="card-text ml-5 text-break">{{ post.text }}</p>
+
+    {% if post.creator == current_user or current_user.id==admin.id%}
+        <div>
+        <a href="{{ url_for('blog_posts.update',blog_validated_id=post.blog_id) }}"><button type="button" class="btn btn-info btn-sm" >Edit <span class="iconify" data-icon="oi-pencil" data-inline="false"></span></button></a>
+        {% if comment_blogs_num >= 1  %}
+
+
+            {% else %}
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#del_modal" >Delete <span class="iconify" data-icon="oi:trash" data-inline="false"></span></button>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    </div>
+
+
+
+
+{# ################################################################################ #}
+
+<h6>Information from other users:</h6>
+
+   <div class="shadow p-1 bg-white rounded" style="width: 30rem; background-color: #3498db;">
+   {% if comment_blogs_num  == 0 %}
+     <br>
+             <h8 class="text-muted">No additional information about the problem is added yet.</h8>
+   {% endif %}
+
+    {% for post2 in comment_blogs.items %}
+        <br>
+      <div class="border rounded p-2">
+        <h7><a class="text-warning" href="{{ url_for('users.user_posts', username=post2.comment.first_name+post2.comment.middle_name+post2.comment.last_name) }}"><img class="text-center rounded" src="{{ url_for('static', filename='profile_pics/'+ post2.comment.profile_image) }}" width = "40" height = "40" alt=""> {{ post2.comment.first_name}} {{ post2.comment.middle_name }} {{ post2.comment.last_name }}</a></h7>
+        <small class="text-muted ml-5">
+             {% if country=='Vietnam' %}
+             Đăng vào:
+             {% elif country=='Japan' %}
+             投稿する日:
+                 {% else %}
+                  Posted on:
+              {% endif %} {{ post2.date.strftime('%Y-%m-%d') }}</small>
+          <p class="card-text ml-5 text-break">{{ post2.text }}</p>
+
+      {% if post2.comment == current_user or current_user.id==admin.id%}
+         <a href="{{ url_for('blog_posts.blog_info_update', blog_validated_id=post2.blog_post_id, blog_info_id=post2.blog_info_id) }}"><button class="btn btn-light btn-sm text-muted ">Edit <span class="iconify" data-icon="oi-pencil" data-inline="false"></span></button></a>
+          {% if total_num >= 2 %}
+
+              {% else %}
+                <button class="btn btn-light btn-sm text-muted" data-toggle="modal" data-target="#del_modal2" >Delete <span class="iconify" data-icon="oi:trash" data-inline="false"></span></button>
+
+              <div class="modal" tabindex="-1" role="dialog" id="del_modal2">
+                  <div class="modal-dialog" role="document">
+
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Delete Post?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <p>Are you sure you want to delete the post?</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <form action="{{ url_for('blog_posts.blog_info_delete', blog_validated_id=post2.blog_post_id, blog_info_id=post2.blog_info_id ) }}">
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </form>
+                          </div>
+
+                        </div>
+                      </div>
+              </div>
+              {% endif %}
+      {% endif %}
+      </div>
+
+    {% endfor %}
+    <br>
+{#    <small class="text-muted">Change page</small>#}
+    <nav aria-label="Page navigation example">
+         <ul class="pagination ">
+            {% for page_num in comment_blogs.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                {% if comment_blogs.page==page_num %}
+                    <li class='page-item disabled'>
+                    <a class="page-link" href="{{ url_for('blog_posts.blog_view', page=page_num, blog_validated_id=blog_validated_id)}}">{{ page_num }}</a>
+                    </li>
+                {% else %}
+                    <li class='page-item'>
+                    <a class="page-link" href="{{ url_for('blog_posts.blog_view', page=page_num, blog_validated_id=blog_validated_id)}}">{{ page_num }}</a>
+                    </li>
+                {% endif %}
+             {% endfor %}
+          </ul>
+     </nav>
+
+    </div>
+<br>
+
+
+
+{# #################################################################################################### #}
+
+
+
+<h5><img src="{{ url_for('static', filename='Uplike.png') }}" width="30" height="30" alt=""> Ideas to solve this problem:</h5>
+
+<div class="shadow p-1 bg-white rounded" style="width: 30rem; background-color: #3498db;">
+    {% if id_check == 0 %}
+              <a href="{{ url_for('users.register') }}"><button type="button" id="" class="btn btn-primary btn-sm">Sign up and add your idea <span class="iconify" data-icon="fa-regular:comment" data-inline="false"></span></button></a>
+        {% if projects_num == 0 %}
+                 <br>
+                 <small class="text-muted">No idea is added yet.</small>
+                {% endif %}
+    {% else %}
+     <button type="button" id="idea_button" class="btn btn-primary btn-sm">Add your idea <span class="iconify" data-icon="fa-regular:comment" data-inline="false"></span></button>
+                      <form id="form3" method="POST" action="">
+                          {{ form3.hidden_tag() }}
+                          <br>
+                          {{ form3.text2(placeholder="Just write some thought...", id="idea_form") }}
+                          {{ form3.idea_submit(class="btn btn-warning btn-sm") }}
+                      </form>
+        {% if ideas_num == 0 %}
+             <br>
+            <p>----------------------------------------------------</p>
+             <h8 class="text-muted">No idea is added yet.</h8>
+            {% endif %}
+     {% endif %}
+
+
+    {% for post3 in ideas.items %}
+        <br>
+        <br>
+        <br>
+        <div class="border rounded p-2">
+        <small><a class="text-warning" href="{{ url_for('users.user_posts', username=post3.idea_creator.first_name+post3.idea_creator.middle_name+post3.idea_creator.last_name) }}"><img class="text-center rounded" src="{{ url_for('static', filename='profile_pics/'+ post3.idea_creator.profile_image) }}" width = "40" height = "40" alt=""> {{ post3.idea_creator.first_name}} {{ post3.idea_creator.middle_name }} {{ post3.idea_creator.last_name }}</a></small>
+        <small class="text-muted ml-5">
+             {% if country=='Vietnam' %}
+             Đăng vào:
+             {% elif country=='Japan' %}
+             投稿する日:
+                 {% else %}
+                  Posted on:
+              {% endif %} {{ post3.date.strftime('%Y-%m-%d') }}</small>
+          <br>
+          <br>
+          <p class="card-text text-break small">{{ post3.text }}</p>
+          <br>
+          <br>
+          <br>
+
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        {% if post3.idea_creator == current_user or current_user.id==admin.id%}
+                 <a href="{{ url_for('blog_posts.blog_idea_update', blog_validated_id=post3.blog_post_id, blog_idea_id=post3.blog_idea_id) }}"><button class="btn btn-light btn-sm text-muted ">Edit <span class="iconify" data-icon="oi-pencil" data-inline="false"></span></button></a>
+                   {% if total_num >=2 %}
+
+                       {% else %}
+                         <a href="{{ url_for('blog_posts.blog_idea_delete', blog_validated_id=post3.blog_post_id, blog_idea_id=post3.blog_idea_id) }}"><button class="btn btn-light btn-sm text-muted ">Delete <span class="iconify" data-icon="oi:trash" data-inline="false"></span></button></a>
+                       {% endif %}
+                {% endif %}
+    {% endfor %}
+
+
+<br>
+<br>
+<br>
+
+<nav aria-label="Page navigation example">
+         <ul class="pagination ">
+            {% for page_num in ideas.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                {% if comment_blogs.page2==page_num %}
+                    <li class='page-item disabled'>
+                    <a class="page-link" href="{{ url_for('blog_posts.blog_view', page2=page_num, blog_validated_id=blog_validated_id)}}">{{ page_num }}</a>
+                    </li>
+                {% else %}
+                    <li class='page-item'>
+                    <a class="page-link" href="{{ url_for('blog_posts.blog_view', page2=page_num, blog_validated_id=blog_validated_id)}}">{{ page_num }}</a>
+                    </li>
+                {% endif %}
+             {% endfor %}
+          </ul>
+     </nav>
+
+
+    </div>
+
+<br>
+<br>
+
+
+
+
+
+
+{# ####################################################################### #}
+
+
+<h7><span class="iconify" data-icon="ri:team-line" data-inline="false"></span> Projects people are doing to solve this problem:</h7>
+<div class="shadow p-1 bg-white rounded" style="width: 30rem; background-color: #3498db;">
+
+    {% if id_check == 0 %}
+              <a href="{{ url_for('users.register') }}"><button type="button" id="" class="btn btn-primary btn-sm">Sign up and add your project <span class="iconify" data-icon="fa-regular:comment" data-inline="false"></span></button></a>
+        {% if projects_num == 0 %}
+                 <br>
+                 <small class="text-muted">No project is added yet.</small>
+                {% endif %}
+    {% else %}
+    <a href="{{ url_for("blog_posts.add_project", blog_validated_id=blog_validated_id) }}"><button type="button" id="" class="btn btn-primary btn-sm">Add your project <span class="iconify" data-icon="fa-regular:comment" data-inline="false"></span></button></a>
+
+            {% if projects_num == 0 %}
+                 <br>
+                 <p>----------------------------------------------------</p>
+                 <h8 class="text-muted">No project is added yet.</h8>
+                {% endif %}
+         {% endif %}
+
+<br>
+{% for post4 in projects.items  %}
+<br>
+ <div class="border rounded p-2 ">
+     <small><a class="text-warning" href="{{ url_for('users.user_posts', username=post4.project_creator.first_name+post4.project_creator.middle_name+post4.project_creator.last_name) }}"><img class="text-center rounded" src="{{ url_for('static', filename='profile_pics/'+ post4.project_creator.profile_image) }}" width = "40" height = "40" alt=""> {{ post4.project_creator.first_name}} {{ post4.project_creator.middle_name }} {{ post4.project_creator.last_name }}</a></small>
+     <small class="text-muted ml-5">
+             {% if country=='Vietnam' %}
+             Đăng vào:
+             {% elif country=='Japan' %}
+             投稿する日:
+                 {% else %}
+                  Posted on:
+              {% endif %} {{ post4.date.strftime('%Y-%m-%d') }}</small>
+    <br>
+     <br>
+     <h5 class="">Project name: {{ post4.project_name }}</h5>
+         <img class="text-center rounded shadow" src="{{ url_for('static', filename='project_pics/'+ post4.project_image) }}" width = "300" height = "150" alt="">
+          <br>
+            <br>
+          <a href="{{ post4.project_link }}" target="_blank"><button type="button" id="idea_button" class="btn btn-warning btn-sm">Go to this project's Google Doc link to learn how to join and more <span class="iconify" data-icon="bi:people" data-inline="false"></span></button></a>
+          <br>
+          <br>
+          <p>Short information about the project:</p>
+          <p class="card-text text-break small">{{ post4.project_short_info }}</p>
+        <br>
+
+         {% if post4.project_creator == current_user or current_user.id==admin.id%}
+                 <a href="{{ url_for('blog_posts.blog_project_update', blog_validated_id=blog_validated_id, blog_project_id=post4.blog_project_id) }}"><button class="btn btn-light btn-sm text-muted ">Edit <span class="iconify" data-icon="oi-pencil" data-inline="false"></span></button></a>
+                   {% if total_num >=2 %}
+
+                       {% else %}
+{#                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal_project" data-target="#del_modal_project" >Delete <span class="iconify" data-icon="oi:trash" data-inline="false"></span></button>#}
+                         <a href="{{ url_for('blog_posts.blog_project_delete', blog_validated_id=blog_validated_id, blog_project_id=post4.blog_project_id) }}"><button class="btn btn-light btn-sm text-muted ">Delete <span class="iconify" data-icon="oi:trash" data-inline="false"></span></button></a>
+                       {% endif %}
+                {% endif %}
+ </div>
+
+
+
+{% endfor %}
+
+<nav aria-label="Page navigation example">
+         <ul class="pagination ">
+            {% for page_num in projects.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                {% if projects.page3==page_num %}
+                    <li class='page-item disabled'>
+                    <a class="page-link" href="{{ url_for('blog_posts.blog_view', page3=page_num, blog_validated_id=blog_validated_id)}}">{{ page_num }}</a>
+                    </li>
+                {% else %}
+                    <li class='page-item'>
+                    <a class="page-link" href="{{ url_for('blog_posts.blog_view', page3=page_num, blog_validated_id=blog_validated_id)}}">{{ page_num }}</a>
+                    </li>
+                {% endif %}
+             {% endfor %}
+          </ul>
+     </nav>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+{# ############################################################################################### #}
+{# Modal is from below #}
+
+ {# Model for deleting the big post #}
+<div class="modal" tabindex="-1" role="dialog" id="del_modal">  {# you can set up id even in html to connect code together #}
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Post?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete the post?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="{{ url_for('blog_posts.delete_post', blog_validated_id=post.blog_id ) }}">
+            <input type="submit" class="btn btn-danger" value="Delete">
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+    {# Model for the project posts #}
+{#    <div class="modal_project" tabindex="-1" role="dialog" id="del_modal_project">  {# you can set up id even in html to connect code together #}
+{#  <div class="modal-dialog" role="document">#}
+{##}
+{#    <div class="modal-content">#}
+{#      <div class="modal-header">#}
+{#        <h5 class="modal-title">Delete Post?</h5>#}
+{#        <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+{#          <span aria-hidden="true">&times;</span>#}
+{#        </button>#}
+{#      </div>#}
+{#      <div class="modal-body">#}
+{#        <p>Are you sure you want to delete the post?</p>#}
+{#      </div>#}
+{#      <div class="modal-footer">#}
+{#        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>#}
+{#        <form action="{{ url_for('blog_posts.blog_project_delete', blog_validated_id=blog_validated_id, blog_project_id=blog_project_id) }}">#}
+{#            <input type="submit" class="btn btn-danger" value="Delete">#}
+{#        </form>#}
+{#      </div>#}
+{##}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+
+    {# ###################################################### #}
+
+
+{% endblock %}
+
+
+
+</div>

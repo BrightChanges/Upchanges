@@ -1,0 +1,43 @@
+
+
+
+{% extends "base.html" %}
+
+
+{% block content %}
+<link href="../static/css/upchangesx.css" rel="stylesheet" type="text/css">
+    <div class="jumbotron">
+
+
+<h3 class="text-center"><strong>UpchangesX</strong></h3>
+<h5 class="text-center">-The newsletter that brings you most important and recent issues, with bullet-point solutions-</h5>
+<h5 class="text-center">Keep you informed. Keep you smart. Keep you positive.</h5>
+
+    <form method="POST" class="form-inline text-center">
+        {{ form.hidden_tag() }}
+<a class="space ml-5"></a>
+        <a class="space ml-5"></a>
+        <a class="space ml-5"></a>
+        <a class="space ml-5"></a>
+        
+
+
+{#        {{ form.email.label }}#}
+        {{ form.email(class="form-group form-control text-center", placeholder="Your email...") }}
+<a class="space ml-3"></a>
+        {{ form.email_submit(class="btn btn-dark text-center") }}
+
+
+    </form>
+<br>
+        <p class="text-center"><u><a href="https://us1.campaign-archive.com/home/?u=bea27cfe90e84e79a77c063f8&id=3f30ff8232">Link to past UpchangesX newsletter</a></u></p>
+
+    <br>
+    <img class="mx-auto d-block responsive3 text-center" src="../static/upchangesxfinal3.png" alt="">
+    <br>
+    <p class="text-muted text-center" target="_blank">Image 1: Example of UpchangesX newsletter</p>
+
+
+    </div>
+
+{% endblock %}

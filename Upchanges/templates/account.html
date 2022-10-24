@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="../static/css/account.css">
+<div class="jumbotron">
+     <div class="text-center">
+         <h1>{{ current_user.first_name}} {{ current_user.middle_name }} {{ current_user.last_name }}'s setting</h1>
+         <img class="text-center img-thumbnail" src="{{ url_for('static', filename='profile_pics/'+current_user.profile_image) }}" width = "200" height = "200" alt="">
+         <p>Email: {{ current_user.email }}</p>
+     </div>
+</div>
+
+<div class="container">
+<form method="POST" action="" enctype="multipart/form-data"> {# putting action in html form is recommended. And enctype allowed form to collect image file, different tyes of file #}
+    {{ form3.hidden_tag() }}
+    {{ form3.first_name.label }} {{ form3.first_name(class="form-group form-control") }} <br>
+    {{ form3.middle_name.label }} {{ form3.middle_name(class="form-group form-control") }}
+    {{ form3.last_name.label }} {{ form3.last_name(class="form-group form-control") }}<br>
+    {{ form3.email.label }} {{ form3.email(class="form-group form-control") }}<br>
+    {{ form3.picture.label }} {{ form3.picture(class="form-group form-control") }}
+    <small class="form-text text-muted">Only jpg, jpeg, and png images</small><br>
+    <small class="form-text text-muted">* Please choose a nice image. It may take 30 minutes for the website to update your new image  *</small><br>
+    <small class="form-text text-muted">* Your picture size may be too big and you will get a 413 error. In that case, just go back and choose another image*</small><br>
+    {{ form3.update_submit(class="btn btn-warning") }}
+</form>
+</div>
+{#    <hr class="striped-border">#}
+{#    <h3>Temporarily disable my account</h3>#}
+{#    <small class="text-muted">After temporarily disabling, you can always come back to our website and reactivate your account!</small><br>#}
+{#    <small class="text-muted">Check users' <a href="#" class="text-primary">privacy</a> to see how we manage your information when you disable your account.</small><br>#}
+{#    <br>#}
+{#    <form>#}
+{#    <div class="form-group">#}
+{#    <input type="text" class="form-control" id="" placeholder="Tell us why you leave?  (optional)">#}
+{#        </div>#}
+{#    </form>#}
+{#    <a href="#"><button type="button" class="btn btn-danger">Temporarily disable my Upchanges account <span class="iconify" data-icon="eva:person-delete-fill" data-inline="false"></span></button></a>#}
+    {# The codes for form and deactivate button above will be change to {{ form... }} in the future/ For now, it does nothing #}
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form method="POST">
+    {{ form2.hidden_tag() }}<br>
+    {{ form2.email.label }} {{ form2.email(class="form-group form-control") }} <br>
+  <p class="small text-muted">Please input your email correctly. If you sign up using "Example@gmail.com", you will need
+  to input here as "Example@gmail.com". If you sign up using "example@gmail.com", you will need
+  to input here as "example@gmail.com".</p>
+    {{ form2.password.label }} {{ form2.password(class="form-group form-control") }} <br>
+    {{ form2.submit(class="btn btn-secondary")}}
+    </form>
+    <br>
+    <h5>------------------</h5>
+    <p>If you are a new user, click the Sign Up button below to create your Upchanges account:</p>
+    <a href="{{ url_for('users.register') }}"><button class="btn btn-success">Sign Up <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span></button></a>
+{% endblock %}

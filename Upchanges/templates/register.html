@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <div class="jumbotron">
+     <h2 class="text-center">Sign up and join</h2><img class="mx-auto d-block text-center" src="../static/logo7.png" width="100" height="30"><br>
+        <form method="POST">
+        {{ form1.hidden_tag() }}
+            <p>Username</p>
+            <p class="text-muted small">First name and Last name are required. Middle name is optional.</p>
+            <div class="form-row">
+                {{ form1.first_name(class="form-group col form-control",  placeholder="First name") }} <br>
+                {{ form1.middle_name(class="form-group col form-control",  placeholder="Middle name") }}  <br>
+                {{ form1.last_name(class="form-group col form-control",  placeholder="Last name") }}<br>
+                </div>
+        {{ form1.email.label }}
+            <p class="text-muted small">Please input the email you want to use for your Upchanges account.</p>
+            {{ form1.email(class="form-group form-control") }}<br>
+        {{ form1.password.label }}
+            <p class="text-muted small">Please input the password you want to use for your Upchanges account/No one can be able to see this (even the Upchanges Team). </p>
+            {{ form1.password(class="form-group form-control") }} <br>
+        {{ form1.pass_confirm.label }}
+             <p class="text-muted small">Please re-enter the password you entered above.</p>
+            {{ form1.pass_confirm(class="form-group form-control") }}<br>
+        {{ form1.blog_submit(class="btn btn-secondary") }}
+        </form>
+    </div>
+{% endblock %}

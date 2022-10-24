@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {# Using Bootstrap is really helpful to create a good looking website #}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <link href="../static/css/base.css" rel="stylesheet">
+
+    {# Always link to css after linking to Bootstrap #}
+
+
+    <title>Upchanges</title>
+    <link rel="short cut icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <a class="navbar-brand" href="{{ url_for('core.index') }}">
+    <img src="{{ url_for('static', filename='logo6.png') }}" width="130" height="40" class="d-inline-block align-top" alt="">
+  </a>
+
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+          <a class="nav-item nav-link" href="{{ url_for('core.index') }}">Homepage/Problems</a>
+          <a class="nav-item nav-link" href="{{ url_for('core.info') }}">About</a>
+          <a class="nav-item nav-link" href="{{ url_for('core.upchangesx') }}">UpchangesX</a>
+        {% if current_user.is_authenticated %}
+          <a class="nav-item nav-link" href="{{ url_for('users.user_posts', username=current_user.first_name+current_user.middle_name+current_user.last_name)}}">{{current_user.first_name}} <img class="text-center rounded" src="{{ url_for('static', filename='profile_pics/'+current_user.profile_image) }}" width = "25" height = "25" alt=""></a>
+          <a class="nav-item nav-link" href="{{ url_for('users.account') }}">My Account</a>
+          <a class="nav-item nav-link" href="{{ url_for('blog_posts.create_post') }}">Post Problems <span class="iconify" data-icon="jam:write-f" data-inline="false"></span></a>
+          <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Log Out</a>
+
+        {% else %}
+        <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Log in <span class="iconify" data-icon="bx:bx-log-in" data-inline="false"></span></a>
+        <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Sign up <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span></a>
+        <a class="space ml-5"></a>
+        <a class="space ml-5"></a>
+        <a class="space ml-5"></a>
+        <a class="space ml-5"></a>
+        <a class="space ml-5"></a>
+        <a class="space ml-5"></a>
+        <a class="space ml-4"></a>
+        <button type="button" class="btn btn-light btn-small ml-5" data-toggle="modal" data-target="#Welcome_model">New users? See this quick introduction! <span class="iconify" data-icon="emojione:shooting-star" data-inline="false"></span></button>
+
+            <div id="Welcome_model" class="modal fade">
+                <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Welcome to Upchanges! <img src="{{ url_for('static', filename='logo.png') }}" width="25" height="25" alt=""></h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Upchanges</strong> is an online platform for the Upchanges community that will help you create positive change projects,recruit more team members for your project, or to support and collaborate with other projects to magnify your project's positive impact</p>
+                <p>(We also just created a website dedicated for the Upchanges community. Check it out at <a class="color" target="_blank" href="https://www.upchangescommunity.com/">https://www.upchangescommunity.com/</a>)</p>
+                <p>Our website is completely <strong> FREE </strong> to use and sign up!</p>
+                <br>
+                <p><strong>You can use Upchanges to:</strong></p>
+
+                <ul>
+                    <li>Search, check out or add problems. <img src="{{ url_for('static', filename='search.png') }}" width="30" height="30" alt=""></li>
+                    <li>See additional information about the problem, ideas to solve it.</li>
+                    <li>Add your idea or project on a problem page. <img src="{{ url_for('static', filename='post1.png') }}" width="25" height="25" alt=""></li>
+                    <li>See, join, support, or collaborate with positive change projects that are added by other peoples. <img src="{{ url_for('static', filename='join.png') }}" width="35" height="35" alt=""></li>
+                    <li>Recruits more team members for your positive change project. <img src="{{ url_for('static', filename='project.png') }}" width="40" height="25" alt=""></li>
+                </ul>
+
+                <br>
+
+                <p>To get started, click below to sign up. If you already signed up, you can log in.</p>
+                <p>You could also click "Sign up" or "Log in" from the navigation bar.</p>
+                <div>
+                            <a class="color" href="{{ url_for('users.login') }}">Log in <span class="iconify" data-icon="bx:bx-log-in" data-inline="false"></span></a>
+                            <a class="color ml-3" href="{{ url_for('users.register') }}">Sign up <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span></a>
+                </div>
+                <br>
+                <p><strong>Our team is working hard to bring more functions to the website and make our community more engaged. Pls stay tuned.</strong></p>
+
+            </div>
+        </div>
+    </div>
+            </div>
+        {% endif %}
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+
+<div class="container">
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+
+</body>
+
+<div class="text-center text-primary">
+<footer>
+    <small><a href="{{ url_for('core.info') }}">about</a>      <a href="{{ url_for('core.contact') }}">contact</a>      <a href="{{ url_for('core.faq') }}">faq</a>  <a href="{{ url_for('core.terms') }}">terms</a> <a href="{{ url_for('core.privacy') }}">privacy</a></small>
+</footer>
+</div>
+
+<div class="text-center">
+    <footer>
+        <small> a production by Kien Le Trung and his team</small>
+    </footer>
+</div>
+
+<div class="text-center">
+<footer>
+        <small> Upchanges &copy;  <script>
+   currentYear=document.write( new Date().getFullYear() );
+</script> version 0.1
+            </small>
+</footer>
+</div>
+<br>
+<br>
+
+</html>
+
+

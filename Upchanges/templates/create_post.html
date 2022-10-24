@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+<form method="POST" action="" enctype="multipart/form-data" >
+    <small class="form-text text-warning"><span class="iconify" data-icon="websymbol:attention" data-inline="false"></span> You must field out all the info below to post your problem <span class="iconify" data-icon="websymbol:attention" data-inline="false"></span></small><br>
+    {{ form.hidden_tag() }}
+    {{ form.blog_image.label }} {{ form.blog_image(class="form-group form-control") }}
+    <small class="form-text text-muted">Only jpg, jpeg, and png images/ Must required for first time post!</small><br>
+        <small class="form-text text-muted">* Please choose a nice image. It may take 30 minutes for the website to update your new image  *</small><br>
+    <small class="form-text text-muted">* Your picture size may be too big and you will get a 413 error. In that case, just go back and choose another image*</small><br>
+    {{ form.problem_name.label(class="form-control-label") }} {{ form.problem_name(class="form-group form-control") }}
+    <small class="form-text text-muted">Maximum 140 characters</small><br>
+    {{ form.text.label }} {{ form.text(class="form-group form-control", placeholder="Write some informations about the problem") }}
+    <small class="text-muted">Write as much as you can!</small>
+    <br>
+    <br>
+    {{ form.problem_type.label }} {{ form.problem_type }}<br>
+    {{ form.country.label }} {{ form.country }}<br>
+    <p class="text-muted small">The location above is the location of the problem that you are posting.</p>
+    <br>
+    <p class="small text-muted">By posting, you accept that after posting, under conditions related to other users, your post could not be delete.</p>
+    {{ form.problem_submit(class="btn btn-warning") }}
+    <a href="{{ url_for('core.index') }}"><button type="button" class="btn btn-danger">Cancel </button></a>
+
+</form>
+</div>
+
+
+{% endblock %}

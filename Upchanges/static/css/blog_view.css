@@ -1,0 +1,60 @@
+svg[data-icon="bi:star"]{
+    font-size: 10px;
+}
+
+@media screen and (min-width: 600px){
+    .responsive1{
+    width: 495px;
+    height: 250px;
+}
+
+}
+
+@media screen and (max-width: 600px){
+    .responsive1{
+    width: 400px;
+    height: 200px;
+}
+}
+
+@media screen and (max-width: 400px){
+    .responsive1{
+    width: 100px;
+    height: 125px;
+}
+}
+
+
+#form2{
+    display: none;
+}
+
+#comment_form{
+    width: 300px;
+    height: 70px;
+}
+
+#form3{
+    display: none;
+}
+
+#idea_form{
+    width: 300px;
+    height: 70px;
+}
+
+.small{
+    height:50px;
+}
+
+#link{
+    color: #243683;
+}
+/*#form4{*/
+/*    display: none;*/
+/*}*/
+
+/*#project_form{*/
+/*    width: 150px;*/
+/*    height: 35px;*/
+/*}*/

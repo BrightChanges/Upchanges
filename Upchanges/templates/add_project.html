@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+
+                <form method="POST" action="" enctype="multipart/form-data" >
+
+                              {{ form4.hidden_tag() }}
+                              <br>
+                              {{ form4.project_name.label }}{{ form4.project_name(id="project_form") }}
+                            <p class="small text-muted">Maximum 140 characters</p>
+                              <br>
+                              <br>
+                              {{ form4.project_image.label }}
+                              <br>
+                              {{ form4.project_image(id="project_form") }}
+                      <small class="form-text text-muted">Only jpg, jpeg, and png images/ Must required for first time post!</small><br>
+                        <small class="form-text text-muted">* Please choose a nice image. It may take 30 minutes for the website to update your new image  *</small>
+    <small class="form-text text-muted">* Your picture size may be too big and you will get a 413 error. In that case, just go back and choose another image*</small>
+                     <br>
+                              <br>
+                            <p>!! You will have to create a Google Docs about your project and put the link in this post !!</p>
+                            <p class="small text-muted">Please don't use organization or school email as other users may not be able to view the Google Docs you created.</p>
+                            <p class="small text-muted">You could use the easy Google Docs template we created below: </p>
+                    <a href="https://docs.google.com/document/d/19QMXWCvaG0dCFBzw4m_FeXTFAWYb7mWJ664Cc3USv_Y/edit?usp=sharing" target="_blank" class="small"> EASY Google Docs template for your project's Google Docs (click here)</a>
+                    <br>
+                              {{ form4.project_link.label }}{{ form4.project_link(id="project_form") }}
+                              <br>
+                              <br>
+                              {{ form4.project_short_info.label }}
+                    <br>
+                              {{ form4.project_short_info(id="project_form") }}
+                    <p class="small text-muted">Maximum 300 characters (50~60 words)</p>
+                              <br>
+                    <br>
+                    <p class="text-muted small">By posting, you accept that this is your project or that you had received the permission from other peoples (or had informed other peoples before or after you post) to post their projects. </p>
+
+                              {{ form4.project_submit(class="btn btn-warning btn-sm") }}
+                </form>
+
+
+</div>
+
+
+{% endblock %}
